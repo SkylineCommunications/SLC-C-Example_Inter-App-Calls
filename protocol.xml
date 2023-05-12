@@ -1,0 +1,501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+****************************************************************************
+*  Copyright (c) 2019,  Skyline Communications NV  All Rights Reserved.    *
+****************************************************************************
+
+By using this driver, you expressly agree with the usage terms and
+conditions set out below.
+This driver and all related materials are protected by copyrights and
+other intellectual property rights that exclusively belong
+to Skyline Communications.
+
+A user license granted for this driver is strictly for personal use only.
+This driver may not be used in any way by anyone without the prior
+written consent of Skyline Communications. Any sublicensing of this
+driver is forbidden.
+
+Any modifications to this driver by the user are only allowed for
+personal use and within the intended purpose of the driver,
+and will remain the sole responsibility of the user.
+Skyline Communications will not be responsible for any damages or
+malfunctions whatsoever of the driver resulting from a modification
+or adaptation by the user.
+
+The content of this driver is confidential information.
+The user hereby agrees to keep this confidential information strictly
+secret and confidential and not to disclose or reveal it, in whole
+or in part, directly or indirectly to any person, entity, organization
+or administration without the prior written consent of
+Skyline Communications.om er
+
+Any inquiries can be addressed to:
+
+	Skyline Communications NV
+	Ambachtenstraat 33
+	B-8870 Izegem
+	Belgium
+	Tel.	: +32 51 31 35 69
+	Fax.	: +32 51 31 01 29
+	E-mail	: info@skyline.be
+	Web		: www.skyline.be
+	Contact	: Ben Vandenberghe
+
+****************************************************************************
+Revision History:
+
+DATE		VERSION		AUTHOR			COMMENTS
+
+22/02/2019	1.0.0.1		JST, Skyline	Initial Version - AutomationScript Example
+15/03/2019	1.0.0.2		JST, Skyline	Adjusted Subscriptions for Response. Only subscribing to the element once. (Only supports DMA>9.6)		
+****************************************************************************
+
+-->
+
+<Protocol xmlns="http://www.skyline.be/protocol">
+	<Name>SLC SDF Inter App Calls</Name>
+	<Description>SLC SDF Inter App Calls is an example showing how to communicate between automationscript and element.</Description>
+	<Version>1.0.0.3</Version>
+	<IntegrationID>DMS-DRV-XXXX</IntegrationID>
+	<Provider>Skyline Communications</Provider>
+	<Vendor>Skyline Communications</Vendor>
+	<VendorOID>1.3.6.1.4.1.8813.2.48</VendorOID>
+	<DeviceOID>999</DeviceOID>
+	<ElementType>Training Example</ElementType>
+	<Type relativeTimers="true">virtual</Type>
+	<Display defaultPage="Inter App Communication" pageOrder="Inter App Communication;Internalbuffer;Fake Device " wideColumnPages="Inter App Communication" />
+	<SNMP includepages="true">auto</SNMP>
+
+	<Compliancies>
+		<CassandraReady>true</CassandraReady>
+		<MinimumRequiredVersion>10.0.3.0 - 8964</MinimumRequiredVersion>
+	</Compliancies>
+
+	<Params>
+		<Param id="10" trending="false" save="true">
+			<Name>DeviceDelay</Name>
+			<Description>Device Delay</Description>
+			<Information>
+				<Subtext>Indicates how much the device is delaying its response in this simulation.</Subtext>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<LengthType>next param</LengthType>
+				<Type>double</Type>
+				<DefaultValue>5</DefaultValue>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Fake Device </Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Instant</Display>
+						<Value>0</Value>
+					</Discreet>
+					<Discreet>
+						<Display>5 Seconds</Display>
+						<Value>5</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="11" setter="true">
+			<Name>DeviceDelay</Name>
+			<Description>Device Delay</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<LengthType>next param</LengthType>
+				<Type>double</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Fake Device </Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>togglebutton</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Instant</Display>
+						<Value>0</Value>
+					</Discreet>
+					<Discreet>
+						<Display>5 Seconds</Display>
+						<Value>5</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="101" trending="false">
+			<Name>DataCreateLineup</Name>
+			<Description>Data Create Lineup</Description>
+			<Information>
+				<Subtext>The content of the command for creating a Lineup.</Subtext>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Fake Device </Page>
+						<Column>0</Column>
+						<Row>2</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="102" trending="false">
+			<Name>SimulateDeviceCommunication</Name>
+			<Description>Simulate Device Communications</Description>
+			<Information>
+				<Subtext>This just triggers a Sleeping QAction to fake device communication in this example.</Subtext>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<LengthType>next param</LengthType>
+				<Type>double</Type>
+			</Interprete>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="103" trending="false">
+			<Name>CurrentActiveMessage</Name>
+			<Description>CurrentActiveMessage</Description>
+			<Information>
+				<Subtext>The Current Message being executed.</Subtext>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Internalbuffer</Page>
+						<Column>0</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="104" trending="false">
+			<Name>InternalDeviceCommunicationBuffer</Name>
+			<Description>InternalDeviceCommunicationBuffer</Description>
+			<Information>
+				<Subtext>InternalDeviceCommunicationBuffer</Subtext>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Internalbuffer</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="105">
+			<Name>TriggerNextInBuffer</Name>
+			<Description>TriggerNextInBuffer</Description>
+			<Type>dummy</Type>
+		</Param>
+		
+		<Param id="200" trending="false">
+			<Name>automationScriptResponse</Name>
+			<Description>AutomationScriptResponse</Description>
+			<Information>
+				<Subtext>Response for Automation Scripts.</Subtext>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay onAppLevel="true">true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Inter App Communication</Page>
+						<Column>0</Column>
+						<Row>3</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="9000000" trending="false">
+			<Name>interAppReceiver</Name>
+			<Description>Inter App Receiver</Description>
+			<Information>
+				<Subtext>Receives External Commands.</Subtext>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay onAppLevel="true">true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Inter App Communication</Page>
+						<Row>0</Row>
+						<Column>0</Column>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="9000001" trending="false" save="true">
+			<Name>InterAppDebug</Name>
+			<Description>Inter App Debug Logging</Description>
+			<Information>
+				<Subtext>Indicates if debug logging should be written.</Subtext>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<LengthType>next param</LengthType>
+				<Type>double</Type>
+				<DefaultValue>0</DefaultValue>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Inter App Communication</Page>
+						<Row>1</Row>
+						<Column>0</Column>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Disabled</Display>
+						<Value>0</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Enabled</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="9000002" setter="true">
+			<Name>InterAppDebug</Name>
+			<Description>Inter App Debug Logging</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<LengthType>next param</LengthType>
+				<Type>double</Type>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Inter App Communication</Page>
+						<Row>1</Row>
+						<Column>0</Column>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>togglebutton</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Disabled</Display>
+						<Value>0</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Enabled</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+	</Params>
+
+	<QActions>
+		<QAction id="63000" encoding="csharp" name="** Auto-generated QAction Library **" options="precompile">
+			
+		</QAction>
+		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile">
+			
+		</QAction>
+		<QAction id="102" name="DeviceHttpResponse" encoding="csharp" triggers="102">
+			
+		</QAction>
+		<QAction id="105" name="RunNextInternalBuffer" encoding="csharp" triggers="105">
+			
+		</QAction>
+		<QAction id="9000000" name="ProcessInterAppReceived" encoding="csharp" triggers="9000000">
+			
+		</QAction>
+		<QAction id="9000001" name="InterAppDebugLogging" encoding="csharp" triggers="9000001">
+			
+		</QAction>
+	</QActions>
+
+	<HTTP>
+	</HTTP>
+
+	<Groups>
+		<Group id="1">
+			<Name>SendHttp_Simulated</Name>
+			<Description>Send HTTP Simulated</Description>
+			<Type>poll action</Type>
+			<Content>
+				<Action>2</Action>
+				<Action>10</Action>
+			</Content>
+		</Group>
+		<Group id="105">
+			<Name>QA_RunNextInBuffer</Name>
+			<Description>QA_RunNextInBuffer</Description>
+			<Type>poll action</Type>
+			<Content>
+				<Action>105</Action>
+			</Content>
+		</Group>
+	</Groups>
+
+	<Triggers>
+		<Trigger id="1">
+			<Name>SendHttp_Simulated</Name>
+			<Time>change</Time>
+			<Type>action</Type>
+			<Content>
+				<Id>1</Id>
+			</Content>
+		</Trigger>
+		<Trigger id="10">
+			<Name>TriggeredFromQA_NextInBuffer</Name>
+			<Type>action</Type>
+			<Content>
+				<Id>10</Id>
+			</Content>
+		</Trigger>
+	</Triggers>
+
+	<Actions>
+		<Action id="1">
+			<Name>SendHttp_Simulated</Name>
+			<On id="1">group</On>
+			<Type>execute</Type>
+		</Action>
+		<Action id="2">
+			<Name>SimulateDeviceCommunication</Name>
+			<On id="102">parameter</On>
+			<Type>run actions</Type>
+		</Action>
+		<Action id="10">
+			<Name>RunNextInBuffer</Name>
+			<On id="105">group</On>
+			<Type>execute</Type>
+		</Action>
+		<Action id="105">
+			<Name>QA_RunNextInBuffer</Name>
+			<On id="105">parameter</On>
+			<Type>run actions</Type>
+		</Action>
+	</Actions>
+
+	<Timers>
+	</Timers>
+
+	<PortSettings>
+	</PortSettings>
+	
+	<VersionHistory>
+		<Branches>
+			<Branch id="1">
+				<Comment />
+				<SystemVersions>
+					<SystemVersion id="0">
+						<MajorVersions>
+							<MajorVersion id="0">
+								<MinorVersions>
+									<MinorVersion id="2">
+										<Date>2023-05-12</Date>
+										<Provider>
+											<Author>JST</Author>
+											<Company>Skyline Communications</Company>
+										</Provider>
+										<Changes />
+									</MinorVersion>
+									<MinorVersion id="3" basedOn="1.0.0.2">
+										<Date>2023-05-12</Date>
+										<Provider>
+											<Author>JST</Author>
+											<Company>Skyline Communications</Company>
+										</Provider>
+										<Changes>
+											<Change>Move to Gerrit</Change>
+										</Changes>
+										<References>
+											<TaskId>211782</TaskId>
+										</References>
+									</MinorVersion>
+								</MinorVersions>
+							</MajorVersion>
+						</MajorVersions>
+					</SystemVersion>
+				</SystemVersions>
+			</Branch>
+		</Branches>
+	</VersionHistory>
+</Protocol>
