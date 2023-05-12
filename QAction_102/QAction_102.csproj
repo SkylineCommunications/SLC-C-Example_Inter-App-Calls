@@ -59,6 +59,9 @@
     <PackageReference Include="Skyline.DataMiner.Dev.Protocol">
       <Version>10.1.0.6</Version>
     </PackageReference>
+    <PackageReference Include="SLC.Lib.Protocol">
+      <Version>1.4.0.2</Version>
+    </PackageReference>
     <PackageReference Include="StyleCop.Analyzers">
       <Version>1.1.118</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -68,7 +71,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties DisLinkedXmlFile="..\protocol.xml" DisProjectType="qactionProject" DisLinkId="102" />
+      <UserProperties DisLinkId="102" DisProjectType="qactionProject" DisLinkedXmlFile="..\protocol.xml" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
