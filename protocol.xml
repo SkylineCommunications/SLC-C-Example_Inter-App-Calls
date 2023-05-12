@@ -28,7 +28,7 @@ The user hereby agrees to keep this confidential information strictly
 secret and confidential and not to disclose or reveal it, in whole
 or in part, directly or indirectly to any person, entity, organization
 or administration without the prior written consent of
-Skyline Communications.om er
+Skyline Communications.
 
 Any inquiries can be addressed to:
 
@@ -49,14 +49,17 @@ DATE		VERSION		AUTHOR			COMMENTS
 
 22/02/2019	1.0.0.1		JST, Skyline	Initial Version - AutomationScript Example
 15/03/2019	1.0.0.2		JST, Skyline	Adjusted Subscriptions for Response. Only subscribing to the element once. (Only supports DMA>9.6)		
+22/05/2019	2.0.0.1		JST, Skyline	Using Class Library for Serialization & InterApp.
+
+Versioning after this handled with VersionHistory tag
 ****************************************************************************
 
 -->
 
 <Protocol xmlns="http://www.skyline.be/protocol">
 	<Name>SLC SDF Inter App Calls</Name>
-	<Description>SLC SDF Inter App Calls is an example showing how to communicate between automationscript and element.</Description>
-	<Version>1.0.0.3</Version>
+	<Description>SLC SDF Inter App Calls is an example showing how to communicate between automation script and element.</Description>
+	<Version>2.0.0.3</Version>
 	<IntegrationID>DMS-DRV-XXXX</IntegrationID>
 	<Provider>Skyline Communications</Provider>
 	<Vendor>Skyline Communications</Vendor>
@@ -64,12 +67,12 @@ DATE		VERSION		AUTHOR			COMMENTS
 	<DeviceOID>999</DeviceOID>
 	<ElementType>Training Example</ElementType>
 	<Type relativeTimers="true">virtual</Type>
-	<Display defaultPage="Inter App Communication" pageOrder="Inter App Communication;Internalbuffer;Fake Device " wideColumnPages="Inter App Communication" />
+	<Display defaultPage="Inter App Communication" pageOrder="Inter App Communication;Internalbuffer;Fake Device" wideColumnPages="Inter App Communication" />
 	<SNMP includepages="true">auto</SNMP>
 
 	<Compliancies>
 		<CassandraReady>true</CassandraReady>
-		<MinimumRequiredVersion>10.0.3.0 - 8964</MinimumRequiredVersion>
+		<MinimumRequiredVersion>10.0.2.0 - 8871</MinimumRequiredVersion>
 	</Compliancies>
 
 	<Params>
@@ -82,8 +85,8 @@ DATE		VERSION		AUTHOR			COMMENTS
 			<Type>read</Type>
 			<Interprete>
 				<RawType>numeric text</RawType>
-				<LengthType>next param</LengthType>
 				<Type>double</Type>
+				<LengthType>next param</LengthType>
 				<DefaultValue>5</DefaultValue>
 			</Interprete>
 			<Display>
@@ -116,8 +119,8 @@ DATE		VERSION		AUTHOR			COMMENTS
 			<Type>write</Type>
 			<Interprete>
 				<RawType>numeric text</RawType>
-				<LengthType>next param</LengthType>
 				<Type>double</Type>
+				<LengthType>next param</LengthType>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
@@ -152,8 +155,8 @@ DATE		VERSION		AUTHOR			COMMENTS
 			<Type>read</Type>
 			<Interprete>
 				<RawType>other</RawType>
-				<LengthType>next param</LengthType>
 				<Type>string</Type>
+				<LengthType>next param</LengthType>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
@@ -178,8 +181,8 @@ DATE		VERSION		AUTHOR			COMMENTS
 			<Type>read</Type>
 			<Interprete>
 				<RawType>numeric text</RawType>
-				<LengthType>next param</LengthType>
 				<Type>double</Type>
+				<LengthType>next param</LengthType>
 			</Interprete>
 			<Measurement>
 				<Type>number</Type>
@@ -194,8 +197,8 @@ DATE		VERSION		AUTHOR			COMMENTS
 			<Type>read</Type>
 			<Interprete>
 				<RawType>other</RawType>
-				<LengthType>next param</LengthType>
 				<Type>string</Type>
+				<LengthType>next param</LengthType>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
@@ -211,7 +214,7 @@ DATE		VERSION		AUTHOR			COMMENTS
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		
+
 		<Param id="104" trending="false">
 			<Name>InternalDeviceCommunicationBuffer</Name>
 			<Description>InternalDeviceCommunicationBuffer</Description>
@@ -221,8 +224,8 @@ DATE		VERSION		AUTHOR			COMMENTS
 			<Type>read</Type>
 			<Interprete>
 				<RawType>other</RawType>
-				<LengthType>next param</LengthType>
 				<Type>string</Type>
+				<LengthType>next param</LengthType>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
@@ -243,7 +246,7 @@ DATE		VERSION		AUTHOR			COMMENTS
 			<Description>TriggerNextInBuffer</Description>
 			<Type>dummy</Type>
 		</Param>
-		
+
 		<Param id="200" trending="false">
 			<Name>automationScriptResponse</Name>
 			<Description>AutomationScriptResponse</Description>
@@ -253,8 +256,8 @@ DATE		VERSION		AUTHOR			COMMENTS
 			<Type>read</Type>
 			<Interprete>
 				<RawType>other</RawType>
-				<LengthType>next param</LengthType>
 				<Type>string</Type>
+				<LengthType>next param</LengthType>
 			</Interprete>
 			<Display>
 				<RTDisplay onAppLevel="true">true</RTDisplay>
@@ -262,7 +265,7 @@ DATE		VERSION		AUTHOR			COMMENTS
 					<Position>
 						<Page>Inter App Communication</Page>
 						<Column>0</Column>
-						<Row>3</Row>
+						<Row>4</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -270,34 +273,8 @@ DATE		VERSION		AUTHOR			COMMENTS
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		
-		<Param id="9000000" trending="false">
-			<Name>interAppReceiver</Name>
-			<Description>Inter App Receiver</Description>
-			<Information>
-				<Subtext>Receives External Commands.</Subtext>
-			</Information>
-			<Type>read</Type>
-			<Interprete>
-				<RawType>other</RawType>
-				<LengthType>next param</LengthType>
-				<Type>string</Type>
-			</Interprete>
-			<Display>
-				<RTDisplay onAppLevel="true">true</RTDisplay>
-				<Positions>
-					<Position>
-						<Page>Inter App Communication</Page>
-						<Row>0</Row>
-						<Column>0</Column>
-					</Position>
-				</Positions>
-			</Display>
-			<Measurement>
-				<Type>string</Type>
-			</Measurement>
-		</Param>
-		<Param id="9000001" trending="false" save="true">
+
+		<Param id="300" trending="false" save="true">
 			<Name>InterAppDebug</Name>
 			<Description>Inter App Debug Logging</Description>
 			<Information>
@@ -306,8 +283,8 @@ DATE		VERSION		AUTHOR			COMMENTS
 			<Type>read</Type>
 			<Interprete>
 				<RawType>numeric text</RawType>
-				<LengthType>next param</LengthType>
 				<Type>double</Type>
+				<LengthType>next param</LengthType>
 				<DefaultValue>0</DefaultValue>
 			</Interprete>
 			<Display>
@@ -315,8 +292,8 @@ DATE		VERSION		AUTHOR			COMMENTS
 				<Positions>
 					<Position>
 						<Page>Inter App Communication</Page>
-						<Row>1</Row>
 						<Column>0</Column>
+						<Row>3</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -334,22 +311,22 @@ DATE		VERSION		AUTHOR			COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="9000002" setter="true">
+		<Param id="301" setter="true">
 			<Name>InterAppDebug</Name>
 			<Description>Inter App Debug Logging</Description>
 			<Type>write</Type>
 			<Interprete>
 				<RawType>numeric text</RawType>
-				<LengthType>next param</LengthType>
 				<Type>double</Type>
+				<LengthType>next param</LengthType>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
 						<Page>Inter App Communication</Page>
-						<Row>1</Row>
 						<Column>0</Column>
+						<Row>3</Row>
 					</Position>
 				</Positions>
 			</Display>
@@ -367,12 +344,66 @@ DATE		VERSION		AUTHOR			COMMENTS
 				</Discreets>
 			</Measurement>
 		</Param>
+
+		<Param id="9000000" trending="false">
+			<Name>clp_interApp_receive</Name>
+			<Description>Inter App Receiver</Description>
+			<Information>
+				<Subtext>Contains the raw serialized InterApp Call sent from an external source.</Subtext>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay onAppLevel="true">true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Inter App Communication</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="9000001" trending="false">
+			<Name>clp_interApp_response</Name>
+			<Description>Inter App Response</Description>
+			<Information>
+				<Subtext>Contains the raw serialized Message that serves as a response to an external source.</Subtext>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay onAppLevel="true">true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Inter App Communication</Page>
+						<Column>0</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
 	</Params>
 
 	<QActions>
-		<QAction id="63000" encoding="csharp" name="** Auto-generated QAction Library **" options="precompile">
+		<QAction id="63000" encoding="csharp" name="** Auto-generated Class Library **" options="precompile">
 			
 		</QAction>
+		
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile">
 			
 		</QAction>
@@ -382,10 +413,10 @@ DATE		VERSION		AUTHOR			COMMENTS
 		<QAction id="105" name="RunNextInternalBuffer" encoding="csharp" triggers="105">
 			
 		</QAction>
-		<QAction id="9000000" name="ProcessInterAppReceived" encoding="csharp" triggers="9000000">
+		<QAction id="300" name="InterAppDebugLogging" encoding="csharp" triggers="300">
 			
 		</QAction>
-		<QAction id="9000001" name="InterAppDebugLogging" encoding="csharp" triggers="9000001">
+		<QAction id="9000000" name="ProcessInterAppReceived" encoding="csharp" triggers="9000000">
 			
 		</QAction>
 	</QActions>
@@ -462,7 +493,7 @@ DATE		VERSION		AUTHOR			COMMENTS
 	
 	<VersionHistory>
 		<Branches>
-			<Branch id="1">
+			<Branch id="2">
 				<Comment />
 				<SystemVersions>
 					<SystemVersion id="0">
@@ -470,21 +501,23 @@ DATE		VERSION		AUTHOR			COMMENTS
 							<MajorVersion id="0">
 								<MinorVersions>
 									<MinorVersion id="2">
-										<Date>2023-05-12</Date>
+										<Date>2020-08-13</Date>
 										<Provider>
 											<Author>JST</Author>
 											<Company>Skyline Communications</Company>
 										</Provider>
-										<Changes />
+										<Changes>
+											<Change>Update to latest CLP package</Change>
+										</Changes>
 									</MinorVersion>
-									<MinorVersion id="3" basedOn="1.0.0.2">
+									<MinorVersion id="3" basedOn="2.0.0.2">
 										<Date>2023-05-12</Date>
 										<Provider>
 											<Author>JST</Author>
 											<Company>Skyline Communications</Company>
 										</Provider>
 										<Changes>
-											<Change>Move to Gerrit</Change>
+											<Change>Migrated from SVN</Change>
 										</Changes>
 										<References>
 											<TaskId>211782</TaskId>

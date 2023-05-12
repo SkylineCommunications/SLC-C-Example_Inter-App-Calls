@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
-
 using Skyline.Common.Api.Calls.SlcSdfInterApp;
-using Skyline.Common.InterApp.InterAppCalls.BaseCall;
+using Skyline.DataMiner.Library.Common.InterAppCalls.CallSingle;
+using Skyline.DataMiner.Library.Common.InterAppCalls.Shared;
 using Skyline.DataMiner.Scripting;
 
 /// <summary>
@@ -21,7 +21,7 @@ public class QAction
 			// Simulate the delay in device communication.
 			protocol.Log("QA" + protocol.QActionID + "|Run|Communicating to Device...", LogType.Error, LogLevel.NoLogging);
 			int secondsToSleep = Convert.ToInt32(protocol.GetParameter(Parameter.devicedelay_10));
-			if(secondsToSleep != 0) Thread.Sleep(secondsToSleep*1000);
+			if (secondsToSleep != 0) Thread.Sleep(secondsToSleep * 1000);
 			protocol.Log("QA" + protocol.QActionID + "|Run|Device Communication Finished", LogType.Error, LogLevel.NoLogging);
 
 			// Parsing Response would happen here. But we only have one in the example. So we'll just parse this one.
@@ -51,9 +51,9 @@ public class QAction
 					returnMessage.Guid = currentMessage.Guid;
 					returnMessage.LineUpId = newLineUpId;
 					returnMessage.Source = new Source("SLC SDF Inter App", protocol.DataMinerID, protocol.ElementID);
-					protocol.Log("QA" + protocol.QActionID + "|Return|returnDestination.ElementId" + returnDestination.ElementId + "returnDestination.DmaId"+ returnDestination.DmaId + "currentMessage.ReturnAddress.ParameterId: "+ currentMessage.ReturnAddress.ParameterId, LogType.Error, LogLevel.NoLogging);
+					protocol.Log("QA" + protocol.QActionID + "|Return|returnDestination.ElementId" + returnDestination.ElementId + "returnDestination.AgentId " + returnDestination.AgentId + ", currentMessage.ReturnAddress.ParameterId: " + currentMessage.ReturnAddress.ParameterId, LogType.Error, LogLevel.NoLogging);
 					protocol.Log("QA" + protocol.QActionID + "|Run|Sending Return Message :" + returnMessage.Guid, LogType.Error, LogLevel.NoLogging);
-					returnMessage.Send(protocol.SLNet.RawConnection, returnDestination.DmaId, returnDestination.ElementId, currentMessage.ReturnAddress.ParameterId);
+					returnMessage.Send(protocol.SLNet.RawConnection, returnDestination.AgentId, returnDestination.ElementId, currentMessage.ReturnAddress.ParameterId);
 				}
 			}
 		}

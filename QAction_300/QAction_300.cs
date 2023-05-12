@@ -15,7 +15,7 @@ public class QAction
 	{
 		try
 		{
-			InterAppLogging.Update(protocol);
+			DebugLogging.Update(protocol);
 		}
 		catch (Exception ex)
 		{
