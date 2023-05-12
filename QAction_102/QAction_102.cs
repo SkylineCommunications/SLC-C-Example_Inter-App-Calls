@@ -34,7 +34,7 @@ public class QAction
 			string currentActiveMessage = Convert.ToString(protocol.GetParameter(Parameter.currentactivemessage_103));
 			if (!String.IsNullOrWhiteSpace(currentActiveMessage))
 			{
-				Message currentMessage = MessageFactory.CreateFromRaw(currentActiveMessage);
+				Message currentMessage = MessageFactory.CreateFromRaw(currentActiveMessage, Shared.KnownTypes);
 
 				if (currentMessage == null)
 				{
@@ -53,7 +53,7 @@ public class QAction
 					returnMessage.Source = new Source("SLC SDF Inter App", protocol.DataMinerID, protocol.ElementID);
 					protocol.Log("QA" + protocol.QActionID + "|Return|returnDestination.ElementId" + returnDestination.ElementId + "returnDestination.AgentId " + returnDestination.AgentId + ", currentMessage.ReturnAddress.ParameterId: " + currentMessage.ReturnAddress.ParameterId, LogType.Error, LogLevel.NoLogging);
 					protocol.Log("QA" + protocol.QActionID + "|Run|Sending Return Message :" + returnMessage.Guid, LogType.Error, LogLevel.NoLogging);
-					returnMessage.Send(protocol.SLNet.RawConnection, returnDestination.AgentId, returnDestination.ElementId, currentMessage.ReturnAddress.ParameterId);
+					returnMessage.Send(protocol.SLNet.RawConnection, returnDestination.AgentId, returnDestination.ElementId, currentMessage.ReturnAddress.ParameterId, Shared.KnownTypes);
 				}
 			}
 		}

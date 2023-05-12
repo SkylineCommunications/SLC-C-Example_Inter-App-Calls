@@ -400,9 +400,6 @@ Versioning after this handled with VersionHistory tag
 	</Params>
 
 	<QActions>
-		<QAction id="63000" encoding="csharp" name="** Auto-generated Class Library **" options="precompile">
-			
-		</QAction>
 		
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile">
 			

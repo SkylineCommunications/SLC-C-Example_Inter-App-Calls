@@ -48,10 +48,6 @@
       <Project>{92405CAE-DEB6-4830-B776-8EA306C408BC}</Project>
       <Name>QAction_1</Name>
     </ProjectReference>
-    <ProjectReference Include="..\QAction_63000\QAction_63000.csproj">
-      <Project>{F4685D71-A481-44AE-9EB0-5ADAB4726EA9}</Project>
-      <Name>QAction_63000</Name>
-    </ProjectReference>
     <AdditionalFiles Include="stylecop.json" />
     <Content Include=".editorconfig" />
   </ItemGroup>
@@ -72,7 +68,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties DisLinkId="9000000" DisProjectType="qactionProject" DisLinkedXmlFile="..\protocol.xml" />
+      <UserProperties DisLinkedXmlFile="..\protocol.xml" DisProjectType="qactionProject" DisLinkId="9000000" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

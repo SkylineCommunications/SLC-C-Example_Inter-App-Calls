@@ -2,9 +2,28 @@ namespace Skyline.Common
 {
 	namespace Api.Calls.SlcSdfInterApp
 	{
+		using System;
 		using System.Collections.Generic;
 
 		using Skyline.DataMiner.Library.Common.InterAppCalls.CallSingle;
+		using Skyline.Protocol.API.Executors.SlcSdfInterApp;
+
+		public static class Shared
+		{
+			public static readonly List<Type> KnownTypes = new List<Type> {
+				typeof(CreateLineup.Create),
+				typeof(CreateLineup.ExpectedReturn),
+				typeof(CreateLineup.Models.AudioMapping),
+				typeof(CreateLineup.Models.Channel),
+				typeof(CreateLineup.Models.Output),
+				typeof(CreateLineup.Models.Profile),
+				typeof(DeleteLineup),
+				typeof(DuplicateLineup),
+			};
+
+			public static Dictionary<Type, Type> Mapping = new Dictionary<Type, Type> {
+				{typeof(CreateLineup),typeof(CreateLineupExecutor) } };
+		}
 
 		public class CreateLineup
 		{
@@ -152,6 +171,7 @@ namespace Skyline.Protocol
 			using System;
 			using System.Collections.Generic;
 
+			using Skyline.Common.Api.Calls.SlcSdfInterApp;
 			using Skyline.DataMiner.Library.Common.Serializing;
 			using Skyline.DataMiner.Scripting;
 
@@ -182,7 +202,7 @@ namespace Skyline.Protocol
 				{
 					this.protocol = protocol;
 					currentElement = protocol.DataMinerID + "/" + protocol.ElementID;
-					serializer = SerializerFactory.CreateInterAppSerializer(typeof(Queue<IBufferItem>));
+					serializer = SerializerFactory.CreateInterAppSerializer(typeof(Queue<IBufferItem>), Shared.KnownTypes);
 					this.debug = debug;
 				}
 
@@ -435,6 +455,7 @@ namespace Skyline.Protocol
 
 	namespace DeviceCommunication
 	{
+		using Skyline.Common.Api.Calls.SlcSdfInterApp;
 		using Skyline.DataMiner.Library.Common.InterAppCalls.CallSingle;
 		using Skyline.DataMiner.Scripting;
 		using Skyline.Protocol.Common.Buffering;
@@ -465,7 +486,7 @@ namespace Skyline.Protocol
 				// Set the current message if applicable.
 				if (OriginalMessage != null)
 				{
-					OriginalMessage.Send(protocol.SLNet.RawConnection, protocol.DataMinerID, protocol.ElementID, 103);
+					OriginalMessage.Send(protocol.SLNet.RawConnection, protocol.DataMinerID, protocol.ElementID, 103, Shared.KnownTypes);
 				}
 
 				// Simulate the HTTP Command

@@ -1,5 +1,6 @@
 using System;
 
+using Skyline.Common.Api.Calls.SlcSdfInterApp;
 using Skyline.DataMiner.Library.Common.InterAppCalls.CallBulk;
 using Skyline.DataMiner.Library.Common.InterAppCalls.CallSingle;
 using Skyline.DataMiner.Scripting;
@@ -21,7 +22,7 @@ public class QAction
 			protocol.InterAppDebugLog("Run", "Received a Call");
 			string raw = Convert.ToString(protocol.GetParameter(protocol.GetTriggerParameter()));
 			protocol.InterAppDebugLog("Run", "Raw:" + raw);
-			IInterAppCall receivedCall = InterAppCallFactory.CreateFromRaw(raw);
+			IInterAppCall receivedCall = InterAppCallFactory.CreateFromRaw(raw, Shared.KnownTypes);
 			protocol.InterAppDebugLog("Run", "Deserialized");
 			if (receivedCall == null)
 			{
@@ -34,14 +35,14 @@ public class QAction
 			foreach (var message in receivedCall.Messages)
 			{
 				Message returnMessage;
-				message.TryExecute(protocol, protocol, out returnMessage);
+				message.TryExecute(protocol, protocol, Shared.Mapping, out returnMessage);
 				if (returnMessage != null)
 				{
 					returnMessage.Send(
 						protocol.SLNet.RawConnection,
 						message.ReturnAddress.AgentId,
 						message.ReturnAddress.ElementId,
-						message.ReturnAddress.ParameterId);
+						message.ReturnAddress.ParameterId, Shared.KnownTypes);
 				}
 			}
 		}
