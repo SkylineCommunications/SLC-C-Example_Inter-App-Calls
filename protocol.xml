@@ -59,7 +59,7 @@ Versioning after this handled with VersionHistory tag
 <Protocol xmlns="http://www.skyline.be/protocol">
 	<Name>SLC SDF Inter App Calls</Name>
 	<Description>SLC SDF Inter App Calls is an example showing how to communicate between automation script and element.</Description>
-	<Version>2.0.0.3</Version>
+	<Version>2.0.0.1</Version>
 	<IntegrationID>DMS-DRV-XXXX</IntegrationID>
 	<Provider>Skyline Communications</Provider>
 	<Vendor>Skyline Communications</Vendor>
@@ -500,17 +500,7 @@ Versioning after this handled with VersionHistory tag
 						<MajorVersions>
 							<MajorVersion id="0">
 								<MinorVersions>
-									<MinorVersion id="2">
-										<Date>2020-08-13</Date>
-										<Provider>
-											<Author>JST</Author>
-											<Company>Skyline Communications</Company>
-										</Provider>
-										<Changes>
-											<Change>Update to latest CLP package</Change>
-										</Changes>
-									</MinorVersion>
-									<MinorVersion id="3" basedOn="">
+									<MinorVersion id="1">
 										<Date>2023-05-12</Date>
 										<Provider>
 											<Author>JST</Author>
