@@ -523,7 +523,7 @@ Versioning after this handled with VersionHistory tag
 						<MajorVersions>
 							<MajorVersion id="0">
 								<MinorVersions>
-									<MinorVersion id="1" basedOn="2.0.0.1">
+									<MinorVersion id="1" basedOn="">
 										<Date>2023-05-12</Date>
 										<Provider>
 											<Author>JST</Author>
