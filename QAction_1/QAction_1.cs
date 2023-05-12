@@ -22,7 +22,7 @@ namespace Skyline.Common
 			};
 
 			public static Dictionary<Type, Type> Mapping = new Dictionary<Type, Type> {
-				{typeof(CreateLineup),typeof(CreateLineupExecutor) } };
+				{typeof(CreateLineup.Create),typeof(CreateLineupExecutor) } };
 		}
 
 		public class CreateLineup
