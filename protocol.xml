@@ -510,7 +510,7 @@ Versioning after this handled with VersionHistory tag
 											<Change>Update to latest CLP package</Change>
 										</Changes>
 									</MinorVersion>
-									<MinorVersion id="3" basedOn="2.0.0.2">
+									<MinorVersion id="3" basedOn="">
 										<Date>2023-05-12</Date>
 										<Provider>
 											<Author>JST</Author>
