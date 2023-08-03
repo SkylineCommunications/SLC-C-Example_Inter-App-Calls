@@ -5,7 +5,7 @@ namespace Skyline.Common
 		using System;
 		using System.Collections.Generic;
 
-		using Skyline.DataMiner.Library.Common.InterAppCalls.CallSingle;
+		using Skyline.DataMiner.Core.InterAppCalls.Common.CallSingle;
 		using Skyline.Protocol.API.Executors.SlcSdfInterApp;
 
 		public static class Shared
@@ -113,8 +113,8 @@ namespace Skyline.Protocol
 		using DeviceCommunication;
 
 		using Skyline.Common.Api.Calls.SlcSdfInterApp;
-		using Skyline.DataMiner.Library.Common.InterAppCalls.CallSingle;
-		using Skyline.DataMiner.Library.Common.InterAppCalls.MessageExecution;
+		using Skyline.DataMiner.Core.InterAppCalls.Common.CallSingle;
+		using Skyline.DataMiner.Core.InterAppCalls.Common.MessageExecution;
 		using Skyline.DataMiner.Scripting;
 		using Skyline.Protocol.Common.Buffering;
 		using Skyline.Protocol.Common.InterAppSLProtocolHelper;
@@ -172,7 +172,7 @@ namespace Skyline.Protocol
 			using System.Collections.Generic;
 
 			using Skyline.Common.Api.Calls.SlcSdfInterApp;
-			using Skyline.DataMiner.Library.Common.Serializing;
+			using Skyline.DataMiner.Core.InterAppCalls.Common.Serializing;
 			using Skyline.DataMiner.Scripting;
 
 			using ThreadLocking;
@@ -456,7 +456,7 @@ namespace Skyline.Protocol
 	namespace DeviceCommunication
 	{
 		using Skyline.Common.Api.Calls.SlcSdfInterApp;
-		using Skyline.DataMiner.Library.Common.InterAppCalls.CallSingle;
+		using Skyline.DataMiner.Core.InterAppCalls.Common.CallSingle;
 		using Skyline.DataMiner.Scripting;
 		using Skyline.Protocol.Common.Buffering;
 

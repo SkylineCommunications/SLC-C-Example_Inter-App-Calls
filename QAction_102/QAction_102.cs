@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
 using Skyline.Common.Api.Calls.SlcSdfInterApp;
-using Skyline.DataMiner.Library.Common.InterAppCalls.CallSingle;
-using Skyline.DataMiner.Library.Common.InterAppCalls.Shared;
+using Skyline.DataMiner.Core.InterAppCalls.Common.CallSingle;
+using Skyline.DataMiner.Core.InterAppCalls.Common.Shared;
 using Skyline.DataMiner.Scripting;
 
 /// <summary>
