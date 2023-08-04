@@ -549,7 +549,7 @@ Versioning after this handled with VersionHistory tag
 						<MajorVersions>
 							<MajorVersion id="0">
 								<MinorVersions>
-									<MinorVersion id="1" basedOn="3.0.0.1">
+									<MinorVersion id="1">
 										<Date>2023-08-03</Date>
 										<Provider>
 											<Author>PDB</Author>
