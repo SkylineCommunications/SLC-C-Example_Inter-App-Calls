@@ -59,7 +59,7 @@ Versioning after this handled with VersionHistory tag
 <Protocol xmlns="http://www.skyline.be/protocol">
 	<Name>SLC SDF Inter App Calls</Name>
 	<Description>SLC SDF Inter App Calls is an example showing how to communicate between automation script and element.</Description>
-	<Version>3.0.0.1</Version>
+	<Version>4.0.0.1</Version>
 	<IntegrationID>DMS-DRV-XXXX</IntegrationID>
 	<Provider>Skyline Communications</Provider>
 	<Vendor>Skyline Communications</Vendor>
@@ -72,7 +72,7 @@ Versioning after this handled with VersionHistory tag
 
 	<Compliancies>
 		<CassandraReady>true</CassandraReady>
-		<MinimumRequiredVersion>10.0.2.0 - 8871</MinimumRequiredVersion>
+		<MinimumRequiredVersion>10.1.0.0 - 9966</MinimumRequiredVersion>
 	</Compliancies>
 
 	<Params>
@@ -523,7 +523,7 @@ Versioning after this handled with VersionHistory tag
 						<MajorVersions>
 							<MajorVersion id="0">
 								<MinorVersions>
-									<MinorVersion id="1" basedOn="">
+									<MinorVersion id="1">
 										<Date>2023-05-12</Date>
 										<Provider>
 											<Author>JST</Author>
@@ -534,6 +534,32 @@ Versioning after this handled with VersionHistory tag
 										</Changes>
 										<References>
 											<TaskId>211782</TaskId>
+										</References>
+									</MinorVersion>
+								</MinorVersions>
+							</MajorVersion>
+						</MajorVersions>
+					</SystemVersion>
+				</SystemVersions>
+			</Branch>
+			<Branch id="4">
+				<Comment>Public NuGet</Comment>
+				<SystemVersions>
+					<SystemVersion id="0">
+						<MajorVersions>
+							<MajorVersion id="0">
+								<MinorVersions>
+									<MinorVersion id="1" basedOn="3.0.0.1">
+										<Date>2023-08-03</Date>
+										<Provider>
+											<Author>PDB</Author>
+											<Company>Skyline Communications</Company>
+										</Provider>
+										<Changes>
+											<Change>Uses public NuGet library</Change>
+										</Changes>
+										<References>
+											<TaskId>217628</TaskId>
 										</References>
 									</MinorVersion>
 								</MinorVersions>
