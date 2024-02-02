@@ -2,7 +2,7 @@
 <!--
 
 ****************************************************************************
-*  Copyright (c) 2019,  Skyline Communications NV  All Rights Reserved.    *
+*  Copyright (c) 2024,  Skyline Communications NV  All Rights Reserved.    *
 ****************************************************************************
 
 By using this driver, you expressly agree with the usage terms and
@@ -40,29 +40,21 @@ Any inquiries can be addressed to:
 	Fax.	: +32 51 31 01 29
 	E-mail	: info@skyline.be
 	Web		: www.skyline.be
-	Contact	: Ben Vandenberghe
-
-****************************************************************************
-Revision History:
-
-DATE		VERSION		AUTHOR			COMMENTS
-
-22/02/2019	1.0.0.1		JST, Skyline	Initial Version - AutomationScript Example
-15/03/2019	1.0.0.2		JST, Skyline	Adjusted Subscriptions for Response. Only subscribing to the element once. (Only supports DMA>9.6)		
+	Contact	: Ben Vandenberghe		
 ****************************************************************************
 
 -->
 
 <Protocol xmlns="http://www.skyline.be/protocol">
-	<Name>SLC SDF Inter App Calls</Name>
+	<Name>Skyline Example InterAppCalls</Name>
 	<Description>SLC SDF Inter App Calls is an example showing how to communicate between automationscript and element.</Description>
 	<Version>1.0.0.3</Version>
-	<IntegrationID>DMS-DRV-XXXX</IntegrationID>
+	<IntegrationID>DMS-DRV-9029</IntegrationID>
 	<Provider>Skyline Communications</Provider>
 	<Vendor>Skyline Communications</Vendor>
-	<VendorOID>1.3.6.1.4.1.8813.2.48</VendorOID>
-	<DeviceOID>999</DeviceOID>
-	<ElementType>Training Example</ElementType>
+	<VendorOID>1.3.6.1.4.1.8813.2.1218</VendorOID>
+	<DeviceOID>6</DeviceOID>
+	<ElementType>Example</ElementType>
 	<Type relativeTimers="true">virtual</Type>
 	<Display defaultPage="Inter App Communication" pageOrder="Inter App Communication;Internalbuffer;Fake Device " wideColumnPages="Inter App Communication" />
 	<SNMP includepages="true">auto</SNMP>
