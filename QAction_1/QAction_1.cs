@@ -94,7 +94,7 @@ namespace Skyline.Common
 			using System.Threading;
 
 			using Skyline.Common.Serializing;
-			using Skyline.DataMiner.Library.Common;
+			using Skyline.DataMiner.Core.DataMinerSystem.Common;
 			using Skyline.DataMiner.Net;
 			using Skyline.DataMiner.Net.Messages;
 
@@ -250,7 +250,7 @@ namespace Skyline.Common
 					{
 						IDms thisDms = connection.GetDms();
 						var element = thisDms.GetElement(destination);
-						if (element.State == DataMiner.Library.Common.ElementState.Active)
+						if (element.State == DataMiner.Core.DataMinerSystem.Common.ElementState.Active)
 						{
 							var parameter = element.GetStandaloneParameter<string>(parameterId);
 							var serializer = Serializing.SerializerFactory.CreateSerializer(typeof(InterAppCall));

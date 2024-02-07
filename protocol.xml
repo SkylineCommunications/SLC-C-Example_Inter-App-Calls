@@ -28,7 +28,7 @@ The user hereby agrees to keep this confidential information strictly
 secret and confidential and not to disclose or reveal it, in whole
 or in part, directly or indirectly to any person, entity, organization
 or administration without the prior written consent of
-Skyline Communications.om er
+Skyline Communications.
 
 Any inquiries can be addressed to:
 
@@ -362,9 +362,6 @@ Any inquiries can be addressed to:
 	</Params>
 
 	<QActions>
-		<QAction id="63000" encoding="csharp" name="** Auto-generated QAction Library **" options="precompile">
-			
-		</QAction>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile">
 			
 		</QAction>
