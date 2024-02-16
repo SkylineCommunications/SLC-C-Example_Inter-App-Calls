@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <!--
 
 ****************************************************************************
@@ -40,106 +40,209 @@ Any inquiries can be addressed to:
 	Fax.	: +32 51 31 01 29
 	E-mail	: info@skyline.be
 	Web		: www.skyline.be
-	Contact	: Ben Vandenberghe		
-****************************************************************************
+	Contact	: Ben Vandenberghe
 
 -->
 
 <Protocol xmlns="http://www.skyline.be/protocol">
-	<Name>Skyline Example InterAppCalls</Name>
-	<Description>SLC SDF Inter App Calls is an example showing how to communicate between automationscript and element.</Description>
-	<Version>1.0.0.3</Version>
-	<IntegrationID>DMS-DRV-9029</IntegrationID>
+	<Name>Skyline Communications Example InterApp Calls</Name>
+	<Description>Skyline Communications Example Connector InterApp Calls DataMiner connector</Description>
+	<Version>1.0.0.1</Version>
+	<IntegrationID>DMS-DRV-0</IntegrationID>
 	<Provider>Skyline Communications</Provider>
-	<Vendor>Skyline Example</Vendor>
-	<VendorOID>1.3.6.1.4.1.8813.2.1218</VendorOID>
-	<DeviceOID>6</DeviceOID>
+	<Vendor>Skyline Communications</Vendor>
+	<VendorOID>1.3.6.1.4.1.8813.2.0</VendorOID>
+	<DeviceOID>0</DeviceOID>
 	<ElementType>Example</ElementType>
 	<Type relativeTimers="true">virtual</Type>
-	<Display defaultPage="Inter App Communication" pageOrder="Inter App Communication;Internalbuffer;Fake Device " wideColumnPages="Inter App Communication" />
+	<Display defaultPage="General" pageOrder="General;Inter-App Communication" wideColumnPages=""/>
 	<SNMP includepages="true">auto</SNMP>
 
 	<Compliancies>
 		<CassandraReady>true</CassandraReady>
-		<MinimumRequiredVersion>10.0.3.0 - 8964</MinimumRequiredVersion>
+		<MinimumRequiredVersion>10.1.0.0 - 9966</MinimumRequiredVersion>
 	</Compliancies>
 
 	<Params>
-		<Param id="10" trending="false" save="true">
-			<Name>DeviceDelay</Name>
-			<Description>Device Delay</Description>
-			<Information>
-				<Subtext>Indicates how much the device is delaying its response in this simulation.</Subtext>
-			</Information>
+		<Param id="10">
+			<Name>MarkRowsAsConfirmed</Name>
+			<Description>Mark Rows as Confirmed</Description>
+			<Type>dummy</Type>
+		</Param>
+		
+		<Param id="11">
+			<Name>CommandBody</Name>
+			<Description>Command Body</Description>
 			<Type>read</Type>
 			<Interprete>
-				<RawType>numeric text</RawType>
+				<RawType>other</RawType>
+				<Type>string</Type>
 				<LengthType>next param</LengthType>
-				<Type>double</Type>
-				<DefaultValue>5</DefaultValue>
 			</Interprete>
+		</Param>
+		
+		<Param id="990">
+			<Name>ExampleTable_ContextMenu</Name>
+			<Description>Context Menu for Example Table</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet dependencyValues="1002;1003;1004">
+						<Display>Create Simple Item...</Display>
+						<Value>1</Value>
+					</Discreet>
+					<Discreet dependencyValues="1002;1003;1004">
+						<Display>Create Advanced Item...</Display>
+						<Value>2</Value>
+					</Discreet>
+					<Discreet dependencyValues="1003;1004">
+						<Display>Create Wrong Advanced Item...</Display>
+						<Value>3</Value>
+					</Discreet>
+					<Discreet dependencyValues="1002;1003;1004">
+						<Display>Create Delayed Item...</Display>
+						<Value>4</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="1000">
+			<Name>MyTable</Name>
+			<Description>My Table</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0" options="volatile">
+				<ColumnOption idx="0" pid="1001" type="retrieved" options=""/>
+				<ColumnOption idx="1" pid="1002" type="retrieved" options="" />
+				<ColumnOption idx="2" pid="1003" type="retrieved" options="" />
+				<ColumnOption idx="3" pid="1004" type="retrieved" options="" />
+			</ArrayOptions>
+			<Information>
+				<Subtext>A table with example columns.</Subtext>
+			</Information>
 			<Display>
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>Fake Device </Page>
+						<Page>General</Page>
 						<Column>0</Column>
 						<Row>0</Row>
 					</Position>
 				</Positions>
+			</Display>
+			<Measurement>
+				<Type options="tab=columns:1001|0-1002|1-1003|2-1004|3,width:100-135-121-132,sort:STRING-INT-STRING-STRING,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="1001" trending="false">
+			<Name>MyTableInstance</Name>
+			<Description>Instance (My Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the key used internally by DataMiner to identify the table entries.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="1002" trending="false">
+			<Name>MyTableMyNumericColumn</Name>
+			<Description>My Numeric Column (My Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>An example Double column.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Units>%</Units>
+				<Range>
+					<Low>0</Low>
+					<High>100</High>
+				</Range>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="1003" trending="false">
+			<Name>MyTableMyStringColumn</Name>
+			<Description>My String Column (My Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>An example string column.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="1004" trending="false">
+			<Name>MyTableMyDiscreetColumn</Name>
+			<Description>My Discreet Column (My Table)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>An example discreet column.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
 			</Display>
 			<Measurement>
 				<Type>discreet</Type>
 				<Discreets>
 					<Discreet>
-						<Display>Instant</Display>
+						<Display>Discreet 1</Display>
 						<Value>0</Value>
 					</Discreet>
 					<Discreet>
-						<Display>5 Seconds</Display>
-						<Value>5</Value>
+						<Display>Discreet 2</Display>
+						<Value>1</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Discreet 3</Display>
+						<Value>2</Value>
 					</Discreet>
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="11" setter="true">
-			<Name>DeviceDelay</Name>
-			<Description>Device Delay</Description>
-			<Type>write</Type>
-			<Interprete>
-				<RawType>numeric text</RawType>
-				<LengthType>next param</LengthType>
-				<Type>double</Type>
-			</Interprete>
-			<Display>
-				<RTDisplay>true</RTDisplay>
-				<Positions>
-					<Position>
-						<Page>Fake Device </Page>
-						<Column>0</Column>
-						<Row>0</Row>
-					</Position>
-				</Positions>
-			</Display>
-			<Measurement>
-				<Type>togglebutton</Type>
-				<Discreets>
-					<Discreet>
-						<Display>Instant</Display>
-						<Value>0</Value>
-					</Discreet>
-					<Discreet>
-						<Display>5 Seconds</Display>
-						<Value>5</Value>
-					</Discreet>
-				</Discreets>
-			</Measurement>
-		</Param>
-		<Param id="101" trending="false">
-			<Name>DataCreateLineup</Name>
-			<Description>Data Create Lineup</Description>
+		
+		<Param id="9000000" trending="false">
+			<Name>IAC_Receiver</Name>
+			<Description>Inter App Receiver</Description>
 			<Information>
-				<Subtext>The content of the command for creating a Lineup.</Subtext>
+				<Subtext>Contains the raw serialized InterApp Command (InterAppCall or Message) sent from an external source.</Subtext>
 			</Information>
 			<Type>read</Type>
 			<Interprete>
@@ -148,336 +251,283 @@ Any inquiries can be addressed to:
 				<Type>string</Type>
 			</Interprete>
 			<Display>
+				<!--Used for Inter App communication.-->
+				<RTDisplay onAppLevel="true">true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Inter-App Communication</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="9000001" trending="false">
+			<Name>IAC_Response</Name>
+			<Description>Inter App Return</Description>
+			<Information>
+				<Subtext>Contains the raw serialized Message that serves as a response to an external source.</Subtext>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<LengthType>next param</LengthType>
+				<Type>string</Type>
+			</Interprete>
+			<Display>
+				<!--Used for Inter App communication.-->
+				<RTDisplay onAppLevel="true">true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Inter-App Communication</Page>
+						<Column>0</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		
+		<Param id="9000100">
+			<Name>IAC_Messages</Name>
+			<Description>IAC_Messages</Description>
+			<Type>array</Type>
+			<ArrayOptions index="0" options=";volatile">
+				<ColumnOption idx="0" pid="9000101" type="retrieved" options="" />
+				<ColumnOption idx="1" pid="9000102" type="retrieved" options="" />
+				<ColumnOption idx="2" pid="9000103" type="retrieved" options="" />
+				<ColumnOption idx="3" pid="9000104" type="retrieved" options="" />
+				<ColumnOption idx="4" pid="9000105" type="retrieved" options="" />
+				<ColumnOption idx="5" pid="9000106" type="retrieved" options="" />
+			</ArrayOptions>
+			<Information>
+				<Subtext>This table contains the list of received InterApp calls which are currently being processed.</Subtext>
+			</Information>
+			<Display>
 				<RTDisplay>true</RTDisplay>
 				<Positions>
 					<Position>
-						<Page>Fake Device </Page>
+						<Page>Inter-App Communication</Page>
 						<Column>0</Column>
 						<Row>2</Row>
 					</Position>
 				</Positions>
 			</Display>
 			<Measurement>
+				<Type options="tab=columns:9000101|0-9000102|1-9000103|2-9000104|3-9000105|4-9000106|5,width:200-200-100-109-100-109,sort:STRING-STRING-STRING-STRING-STRING-STRING,lines:25,filter:true">table</Type>
+			</Measurement>
+		</Param>
+		<Param id="9000101" trending="false">
+			<Name>IAC_MessagesGuid</Name>
+			<Description>GUID [IDX] (IAC_Messages)</Description>
+			<Information>
+				<Subtext>This is the key used internally by DataMiner to identify the table entries.</Subtext>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
 				<Type>string</Type>
 			</Measurement>
 		</Param>
-		<Param id="102" trending="false">
-			<Name>SimulateDeviceCommunication</Name>
-			<Description>Simulate Device Communications</Description>
+		<Param id="9000102" trending="false">
+			<Name>IAC_MessagesStatus</Name>
+			<Description>Status (IAC_Messages)</Description>
 			<Information>
-				<Subtext>This just triggers a Sleeping QAction to fake device communication in this example.</Subtext>
+				<Subtext>This is the current status of the InterApp Call.</Subtext>
 			</Information>
 			<Type>read</Type>
 			<Interprete>
 				<RawType>numeric text</RawType>
-				<LengthType>next param</LengthType>
 				<Type>double</Type>
-			</Interprete>
-			<Measurement>
-				<Type>number</Type>
-			</Measurement>
-		</Param>
-		<Param id="103" trending="false">
-			<Name>CurrentActiveMessage</Name>
-			<Description>CurrentActiveMessage</Description>
-			<Information>
-				<Subtext>The Current Message being executed.</Subtext>
-			</Information>
-			<Type>read</Type>
-			<Interprete>
-				<RawType>other</RawType>
 				<LengthType>next param</LengthType>
-				<Type>string</Type>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
-				<Positions>
-					<Position>
-						<Page>Internalbuffer</Page>
-						<Column>0</Column>
-						<Row>1</Row>
-					</Position>
-				</Positions>
-			</Display>
-			<Measurement>
-				<Type>string</Type>
-			</Measurement>
-		</Param>
-		
-		<Param id="104" trending="false">
-			<Name>InternalDeviceCommunicationBuffer</Name>
-			<Description>InternalDeviceCommunicationBuffer</Description>
-			<Information>
-				<Subtext>InternalDeviceCommunicationBuffer</Subtext>
-			</Information>
-			<Type>read</Type>
-			<Interprete>
-				<RawType>other</RawType>
-				<LengthType>next param</LengthType>
-				<Type>string</Type>
-			</Interprete>
-			<Display>
-				<RTDisplay>true</RTDisplay>
-				<Positions>
-					<Position>
-						<Page>Internalbuffer</Page>
-						<Column>0</Column>
-						<Row>0</Row>
-					</Position>
-				</Positions>
-			</Display>
-			<Measurement>
-				<Type>string</Type>
-			</Measurement>
-		</Param>
-		<Param id="105">
-			<Name>TriggerNextInBuffer</Name>
-			<Description>TriggerNextInBuffer</Description>
-			<Type>dummy</Type>
-		</Param>
-		
-		<Param id="200" trending="false">
-			<Name>automationScriptResponse</Name>
-			<Description>AutomationScriptResponse</Description>
-			<Information>
-				<Subtext>Response for Automation Scripts.</Subtext>
-			</Information>
-			<Type>read</Type>
-			<Interprete>
-				<RawType>other</RawType>
-				<LengthType>next param</LengthType>
-				<Type>string</Type>
-			</Interprete>
-			<Display>
-				<RTDisplay onAppLevel="true">true</RTDisplay>
-				<Positions>
-					<Position>
-						<Page>Inter App Communication</Page>
-						<Column>0</Column>
-						<Row>3</Row>
-					</Position>
-				</Positions>
-			</Display>
-			<Measurement>
-				<Type>string</Type>
-			</Measurement>
-		</Param>
-		
-		<Param id="9000000" trending="false">
-			<Name>interAppReceiver</Name>
-			<Description>Inter App Receiver</Description>
-			<Information>
-				<Subtext>Receives External Commands.</Subtext>
-			</Information>
-			<Type>read</Type>
-			<Interprete>
-				<RawType>other</RawType>
-				<LengthType>next param</LengthType>
-				<Type>string</Type>
-			</Interprete>
-			<Display>
-				<RTDisplay onAppLevel="true">true</RTDisplay>
-				<Positions>
-					<Position>
-						<Page>Inter App Communication</Page>
-						<Row>0</Row>
-						<Column>0</Column>
-					</Position>
-				</Positions>
-			</Display>
-			<Measurement>
-				<Type>string</Type>
-			</Measurement>
-		</Param>
-		<Param id="9000001" trending="false" save="true">
-			<Name>InterAppDebug</Name>
-			<Description>Inter App Debug Logging</Description>
-			<Information>
-				<Subtext>Indicates if debug logging should be written.</Subtext>
-			</Information>
-			<Type>read</Type>
-			<Interprete>
-				<RawType>numeric text</RawType>
-				<LengthType>next param</LengthType>
-				<Type>double</Type>
-				<DefaultValue>0</DefaultValue>
-			</Interprete>
-			<Display>
-				<RTDisplay>true</RTDisplay>
-				<Positions>
-					<Position>
-						<Page>Inter App Communication</Page>
-						<Row>1</Row>
-						<Column>0</Column>
-					</Position>
-				</Positions>
 			</Display>
 			<Measurement>
 				<Type>discreet</Type>
 				<Discreets>
 					<Discreet>
-						<Display>Disabled</Display>
-						<Value>0</Value>
+						<Display>Buffered</Display>
+						<Value>1</Value>
 					</Discreet>
 					<Discreet>
-						<Display>Enabled</Display>
-						<Value>1</Value>
+						<Display>In Progress</Display>
+						<Value>2</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Confirmed</Display>
+						<Value>3</Value>
 					</Discreet>
 				</Discreets>
 			</Measurement>
 		</Param>
-		<Param id="9000002" setter="true">
-			<Name>InterAppDebug</Name>
-			<Description>Inter App Debug Logging</Description>
-			<Type>write</Type>
+		<Param id="9000103" trending="false">
+			<Name>IAC_MessagesRequest</Name>
+			<Description>Request (IAC_Messages)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>The incoming InterApp message that triggered this.</Subtext>
+			</Information>
 			<Interprete>
-				<RawType>numeric text</RawType>
+				<RawType>other</RawType>
+				<Type>string</Type>
 				<LengthType>next param</LengthType>
-				<Type>double</Type>
 			</Interprete>
 			<Display>
 				<RTDisplay>true</RTDisplay>
-				<Positions>
-					<Position>
-						<Page>Inter App Communication</Page>
-						<Row>1</Row>
-						<Column>0</Column>
-					</Position>
-				</Positions>
 			</Display>
 			<Measurement>
-				<Type>togglebutton</Type>
-				<Discreets>
-					<Discreet>
-						<Display>Disabled</Display>
-						<Value>0</Value>
-					</Discreet>
-					<Discreet>
-						<Display>Enabled</Display>
-						<Value>1</Value>
-					</Discreet>
-				</Discreets>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="9000104" trending="false">
+			<Name>IAC_MessagesRequestType</Name>
+			<Description>Request Type (IAC_Messages)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>This is the type of the request message from the InterApp Call.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="9000105" trending="false">
+			<Name>IAC_MessagesResponse</Name>
+			<Description>Response (IAC_Messages)</Description>
+			<Information>
+				<Subtext>This is the return message for the InterApp Call.</Subtext>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="9000106" trending="false">
+			<Name>IAC_MessagesResponseType</Name>
+			<Description>Response Type (IAC_Messages)</Description>
+			<Information>
+				<Subtext>This is the type of the response message for the InterApp Call. This type is used to know what return messages needs to be made.</Subtext>
+			</Information>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<!-- SuppressValidator 2.9.7 No unit required for identifiers -->
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Range>
+					<Low>0</Low>
+				</Range>
+			</Display>
+			<!-- /SuppressValidator 2.9.7 -->
+			<Measurement>
+				<Type>string</Type>
 			</Measurement>
 		</Param>
 	</Params>
 
 	<QActions>
-		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile">
-			
-		</QAction>
-		<QAction id="102" name="DeviceHttpResponse" encoding="csharp" triggers="102">
-			
-		</QAction>
-		<QAction id="105" name="RunNextInternalBuffer" encoding="csharp" triggers="105">
-			
-		</QAction>
-		<QAction id="9000000" name="ProcessInterAppReceived" encoding="csharp" triggers="9000000">
-			
-		</QAction>
-		<QAction id="9000001" name="InterAppDebugLogging" encoding="csharp" triggers="9000001">
-			
-		</QAction>
+		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
+		<QAction id="10" name="Mark rows as confirmed" encoding="csharp" triggers="10" />
+		<QAction id="990" name="Example Table - ContextMenu" encoding="csharp" triggers="990" />
+
+		<QAction id="9000000" name="Process Incoming InterApp Messages" encoding="csharp" triggers="9000000"/>
 	</QActions>
 
-	<HTTP>
-	</HTTP>
-
 	<Groups>
-		<Group id="1">
-			<Name>SendHttp_Simulated</Name>
-			<Description>Send HTTP Simulated</Description>
+		<Group id="10">
+			<Name>Mark Rows as Confirmed</Name>
+			<Description>Mark Rows as Confirmed</Description>
 			<Type>poll action</Type>
 			<Content>
-				<Action>2</Action>
 				<Action>10</Action>
 			</Content>
 		</Group>
-		<Group id="105">
-			<Name>QA_RunNextInBuffer</Name>
-			<Description>QA_RunNextInBuffer</Description>
+		<Group id="11">
+			<Name>Simulated Set</Name>
+			<Description>Simulated Set</Description>
 			<Type>poll action</Type>
 			<Content>
-				<Action>105</Action>
+				<Action>10</Action>
 			</Content>
 		</Group>
 	</Groups>
 
 	<Triggers>
-		<Trigger id="1">
-			<Name>SendHttp_Simulated</Name>
-			<Time>change</Time>
+		<Trigger id="11">
+			<Name>Start Send Command</Name>
 			<Type>action</Type>
 			<Content>
-				<Id>1</Id>
-			</Content>
-		</Trigger>
-		<Trigger id="10">
-			<Name>TriggeredFromQA_NextInBuffer</Name>
-			<Type>action</Type>
-			<Content>
-				<Id>10</Id>
+				<Id>11</Id>
 			</Content>
 		</Trigger>
 	</Triggers>
 
 	<Actions>
-		<Action id="1">
-			<Name>SendHttp_Simulated</Name>
-			<On id="1">group</On>
-			<Type>execute</Type>
-		</Action>
-		<Action id="2">
-			<Name>SimulateDeviceCommunication</Name>
-			<On id="102">parameter</On>
-			<Type>run actions</Type>
-		</Action>
 		<Action id="10">
-			<Name>RunNextInBuffer</Name>
-			<On id="105">group</On>
-			<Type>execute</Type>
-		</Action>
-		<Action id="105">
-			<Name>QA_RunNextInBuffer</Name>
-			<On id="105">parameter</On>
+			<Name>Mark Rows as Confirmed</Name>
+			<On id="10">parameter</On>
 			<Type>run actions</Type>
+		</Action>
+		<Action id="11">
+			<Name>Add Command to Stack</Name>
+			<On id="11">group</On>
+			<Type>execute next</Type>
 		</Action>
 	</Actions>
 
 	<Timers>
 	</Timers>
 
-	<PortSettings>
-	</PortSettings>
-	
 	<VersionHistory>
 		<Branches>
 			<Branch id="1">
-				<Comment />
+				<Comment>Main Branch</Comment>
 				<SystemVersions>
 					<SystemVersion id="0">
 						<MajorVersions>
 							<MajorVersion id="0">
 								<MinorVersions>
-									<MinorVersion id="2">
-										<Date>2023-05-12</Date>
+									<MinorVersion id="1">
+										<Date>2024-02-09</Date>
 										<Provider>
-											<Author>JST</Author>
-											<Company>Skyline Communications</Company>
-										</Provider>
-										<Changes />
-									</MinorVersion>
-									<MinorVersion id="3" basedOn="1.0.0.2">
-										<Date>2023-05-12</Date>
-										<Provider>
-											<Author>JST</Author>
+											<Author>AMA</Author>
 											<Company>Skyline Communications</Company>
 										</Provider>
 										<Changes>
-											<Change>Move to Gerrit</Change>
+											<NewFeature>Initial version</NewFeature>
 										</Changes>
-										<References>
-											<TaskId>211782</TaskId>
-										</References>
 									</MinorVersion>
 								</MinorVersions>
 							</MajorVersion>
@@ -487,4 +537,5 @@ Any inquiries can be addressed to:
 			</Branch>
 		</Branches>
 	</VersionHistory>
+
 </Protocol>

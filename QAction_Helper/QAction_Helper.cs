@@ -8,66 +8,170 @@ namespace Skyline.DataMiner.Scripting
 {
 public static class Parameter
 {
-	/// <summary>PID: 10 | Type: read</summary>
+	/// <summary>PID: 11 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public const int devicedelay_10 = 10;
-	/// <summary>PID: 10 | Type: read</summary>
-	public const int devicedelay = 10;
-	/// <summary>PID: 101 | Type: read</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public const int datacreatelineup_101 = 101;
-	/// <summary>PID: 101 | Type: read</summary>
-	public const int datacreatelineup = 101;
-	/// <summary>PID: 102 | Type: read</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public const int simulatedevicecommunication_102 = 102;
-	/// <summary>PID: 102 | Type: read</summary>
-	public const int simulatedevicecommunication = 102;
-	/// <summary>PID: 103 | Type: read</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public const int currentactivemessage_103 = 103;
-	/// <summary>PID: 103 | Type: read</summary>
-	public const int currentactivemessage = 103;
-	/// <summary>PID: 104 | Type: read</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public const int internaldevicecommunicationbuffer_104 = 104;
-	/// <summary>PID: 104 | Type: read</summary>
-	public const int internaldevicecommunicationbuffer = 104;
-	/// <summary>PID: 200 | Type: read</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public const int automationscriptresponse_200 = 200;
-	/// <summary>PID: 200 | Type: read</summary>
-	public const int automationscriptresponse = 200;
+	public const int commandbody_11 = 11;
+	/// <summary>PID: 11 | Type: read</summary>
+	public const int commandbody = 11;
 	/// <summary>PID: 9000000 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public const int interappreceiver_9000000 = 9000000;
+	public const int iac_receiver_9000000 = 9000000;
 	/// <summary>PID: 9000000 | Type: read</summary>
-	public const int interappreceiver = 9000000;
+	public const int iac_receiver = 9000000;
 	/// <summary>PID: 9000001 | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public const int interappdebug_9000001 = 9000001;
+	public const int iac_response_9000001 = 9000001;
 	/// <summary>PID: 9000001 | Type: read</summary>
-	public const int interappdebug = 9000001;
+	public const int iac_response = 9000001;
 	public class Write
 	{
-		/// <summary>PID: 11 | Type: write</summary>
+		/// <summary>PID: 990 | Type: write</summary>
 		[EditorBrowsable(EditorBrowsableState.Never)]
-		public const int devicedelay_11 = 11;
-		/// <summary>PID: 11 | Type: write</summary>
-		public const int devicedelay = 11;
-		/// <summary>PID: 9000002 | Type: write</summary>
-		[EditorBrowsable(EditorBrowsableState.Never)]
-		public const int interappdebug_9000002 = 9000002;
-		/// <summary>PID: 9000002 | Type: write</summary>
-		public const int interappdebug = 9000002;
+		public const int exampletable_contextmenu_990 = 990;
+		/// <summary>PID: 990 | Type: write</summary>
+		public const int exampletable_contextmenu = 990;
+	}
+	public class Mytable
+	{
+		/// <summary>PID: 1000</summary>
+		public const int tablePid = 1000;
+		/// <summary>IDX: 0</summary>
+		public const int indexColumn = 0;
+		/// <summary>PID: 1001</summary>
+		public const int indexColumnPid = 1001;
+		public class Pid
+		{
+			/// <summary>PID: 1001 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int mytableinstance_1001 = 1001;
+			/// <summary>PID: 1001 | Type: read</summary>
+			public const int mytableinstance = 1001;
+			/// <summary>PID: 1002 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int mytablemynumericcolumn_1002 = 1002;
+			/// <summary>PID: 1002 | Type: read</summary>
+			public const int mytablemynumericcolumn = 1002;
+			/// <summary>PID: 1003 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int mytablemystringcolumn_1003 = 1003;
+			/// <summary>PID: 1003 | Type: read</summary>
+			public const int mytablemystringcolumn = 1003;
+			/// <summary>PID: 1004 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int mytablemydiscreetcolumn_1004 = 1004;
+			/// <summary>PID: 1004 | Type: read</summary>
+			public const int mytablemydiscreetcolumn = 1004;
+			public class Write
+			{
+			}
+		}
+		public class Idx
+		{
+			/// <summary>IDX: 0 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int mytableinstance_1001 = 0;
+			/// <summary>IDX: 0 | Type: read</summary>
+			public const int mytableinstance = 0;
+			/// <summary>IDX: 1 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int mytablemynumericcolumn_1002 = 1;
+			/// <summary>IDX: 1 | Type: read</summary>
+			public const int mytablemynumericcolumn = 1;
+			/// <summary>IDX: 2 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int mytablemystringcolumn_1003 = 2;
+			/// <summary>IDX: 2 | Type: read</summary>
+			public const int mytablemystringcolumn = 2;
+			/// <summary>IDX: 3 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int mytablemydiscreetcolumn_1004 = 3;
+			/// <summary>IDX: 3 | Type: read</summary>
+			public const int mytablemydiscreetcolumn = 3;
+		}
+	}
+	public class Iac_messages
+	{
+		/// <summary>PID: 9000100</summary>
+		public const int tablePid = 9000100;
+		/// <summary>IDX: 0</summary>
+		public const int indexColumn = 0;
+		/// <summary>PID: 9000101</summary>
+		public const int indexColumnPid = 9000101;
+		public class Pid
+		{
+			/// <summary>PID: 9000101 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int iac_messagesguid_9000101 = 9000101;
+			/// <summary>PID: 9000101 | Type: read</summary>
+			public const int iac_messagesguid = 9000101;
+			/// <summary>PID: 9000102 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int iac_messagesstatus_9000102 = 9000102;
+			/// <summary>PID: 9000102 | Type: read</summary>
+			public const int iac_messagesstatus = 9000102;
+			/// <summary>PID: 9000103 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int iac_messagesrequest_9000103 = 9000103;
+			/// <summary>PID: 9000103 | Type: read</summary>
+			public const int iac_messagesrequest = 9000103;
+			/// <summary>PID: 9000104 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int iac_messagesrequesttype_9000104 = 9000104;
+			/// <summary>PID: 9000104 | Type: read</summary>
+			public const int iac_messagesrequesttype = 9000104;
+			/// <summary>PID: 9000105 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int iac_messagesresponse_9000105 = 9000105;
+			/// <summary>PID: 9000105 | Type: read</summary>
+			public const int iac_messagesresponse = 9000105;
+			/// <summary>PID: 9000106 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int iac_messagesresponsetype_9000106 = 9000106;
+			/// <summary>PID: 9000106 | Type: read</summary>
+			public const int iac_messagesresponsetype = 9000106;
+			public class Write
+			{
+			}
+		}
+		public class Idx
+		{
+			/// <summary>IDX: 0 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int iac_messagesguid_9000101 = 0;
+			/// <summary>IDX: 0 | Type: read</summary>
+			public const int iac_messagesguid = 0;
+			/// <summary>IDX: 1 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int iac_messagesstatus_9000102 = 1;
+			/// <summary>IDX: 1 | Type: read</summary>
+			public const int iac_messagesstatus = 1;
+			/// <summary>IDX: 2 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int iac_messagesrequest_9000103 = 2;
+			/// <summary>IDX: 2 | Type: read</summary>
+			public const int iac_messagesrequest = 2;
+			/// <summary>IDX: 3 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int iac_messagesrequesttype_9000104 = 3;
+			/// <summary>IDX: 3 | Type: read</summary>
+			public const int iac_messagesrequesttype = 3;
+			/// <summary>IDX: 4 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int iac_messagesresponse_9000105 = 4;
+			/// <summary>IDX: 4 | Type: read</summary>
+			public const int iac_messagesresponse = 4;
+			/// <summary>IDX: 5 | Type: read</summary>
+			[EditorBrowsable(EditorBrowsableState.Never)]
+			public const int iac_messagesresponsetype_9000106 = 5;
+			/// <summary>IDX: 5 | Type: read</summary>
+			public const int iac_messagesresponsetype = 5;
+		}
 	}
 }
 public class WriteParameters
 {
-	/// <summary>PID: 11  | Type: write | DISCREETS: Instant = 0, 5 Seconds = 5</summary>
-	public System.Object Devicedelay {get { return Protocol.GetParameter(11); }set { Protocol.SetParameter(11, value); }}
-	/// <summary>PID: 9000002  | Type: write | DISCREETS: Disabled = 0, Enabled = 1</summary>
-	public System.Object Interappdebug {get { return Protocol.GetParameter(9000002); }set { Protocol.SetParameter(9000002, value); }}
+	/// <summary>PID: 990  | Type: write | DISCREETS: Create Simple Item... = 1, Create Advanced Item... = 2, Create Wrong Advanced Item... = 3, Create Delayed Item... = 4</summary>
+	public System.Object Exampletable_contextmenu {get { return Protocol.GetParameter(990); }set { Protocol.SetParameter(990, value); }}
 	public SLProtocolExt Protocol;
 	public WriteParameters(SLProtocolExt protocol)
 	{
@@ -76,81 +180,204 @@ public class WriteParameters
 }
 public interface SLProtocolExt : SLProtocol
 {
-	object Devicedelay_10 { get; set; }
-	object Devicedelay { get; set; }
-	object Devicedelay_11 { get; set; }
-	object Datacreatelineup_101 { get; set; }
-	object Datacreatelineup { get; set; }
-	object Simulatedevicecommunication_102 { get; set; }
-	object Simulatedevicecommunication { get; set; }
-	object Currentactivemessage_103 { get; set; }
-	object Currentactivemessage { get; set; }
-	object Internaldevicecommunicationbuffer_104 { get; set; }
-	object Internaldevicecommunicationbuffer { get; set; }
-	object Triggernextinbuffer_dummy { get; set; }
-	object Automationscriptresponse_200 { get; set; }
-	object Automationscriptresponse { get; set; }
-	object Interappreceiver_9000000 { get; set; }
-	object Interappreceiver { get; set; }
-	object Interappdebug_9000001 { get; set; }
-	object Interappdebug { get; set; }
-	object Interappdebug_9000002 { get; set; }
+	/// <summary>PID: 1000</summary>
+	MytableQActionTable mytable { get; set; }
+	/// <summary>PID: 9000100</summary>
+	Iac_messagesQActionTable iac_messages { get; set; }
+	object Markrowsasconfirmed_dummy { get; set; }
+	object Commandbody_11 { get; set; }
+	object Commandbody { get; set; }
+	object Exampletable_contextmenu_990 { get; set; }
+	object Exampletable_contextmenu { get; set; }
+	object Mytableinstance_1001 { get; set; }
+	object Mytableinstance { get; set; }
+	object Mytablemynumericcolumn_1002 { get; set; }
+	object Mytablemynumericcolumn { get; set; }
+	object Mytablemystringcolumn_1003 { get; set; }
+	object Mytablemystringcolumn { get; set; }
+	object Mytablemydiscreetcolumn_1004 { get; set; }
+	object Mytablemydiscreetcolumn { get; set; }
+	object Iac_receiver_9000000 { get; set; }
+	object Iac_receiver { get; set; }
+	object Iac_response_9000001 { get; set; }
+	object Iac_response { get; set; }
+	object Iac_messagesguid_9000101 { get; set; }
+	object Iac_messagesguid { get; set; }
+	object Iac_messagesstatus_9000102 { get; set; }
+	object Iac_messagesstatus { get; set; }
+	object Iac_messagesrequest_9000103 { get; set; }
+	object Iac_messagesrequest { get; set; }
+	object Iac_messagesrequesttype_9000104 { get; set; }
+	object Iac_messagesrequesttype { get; set; }
+	object Iac_messagesresponse_9000105 { get; set; }
+	object Iac_messagesresponse { get; set; }
+	object Iac_messagesresponsetype_9000106 { get; set; }
+	object Iac_messagesresponsetype { get; set; }
 	WriteParameters Write { get; set; }
 }
 public class ConcreteSLProtocolExt : ConcreteSLProtocol, SLProtocolExt
 {
-	/// <summary>PID: 10  | Type: read | DISCREETS: Instant = 0, 5 Seconds = 5</summary>
+	/// <summary>PID: 1000</summary>
+	public MytableQActionTable mytable { get; set; }
+	/// <summary>PID: 9000100</summary>
+	public Iac_messagesQActionTable iac_messages { get; set; }
+	/// <summary>PID: 10  | Type: dummy</summary>
+	public System.Object Markrowsasconfirmed_dummy {get { return GetParameter(10); }set { SetParameter(10, value); }}
+	/// <summary>PID: 11  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Devicedelay_10 {get { return GetParameter(10); }set { SetParameter(10, value); }}
-	/// <summary>PID: 10  | Type: read | DISCREETS: Instant = 0, 5 Seconds = 5</summary>
-	public System.Object Devicedelay {get { return GetParameter(10); }set { SetParameter(10, value); }}
-	/// <summary>PID: 11  | Type: write | DISCREETS: Instant = 0, 5 Seconds = 5</summary>
+	public System.Object Commandbody_11 {get { return GetParameter(11); }set { SetParameter(11, value); }}
+	/// <summary>PID: 11  | Type: read</summary>
+	public System.Object Commandbody {get { return GetParameter(11); }set { SetParameter(11, value); }}
+	/// <summary>PID: 990  | Type: write | DISCREETS: Create Simple Item... = 1, Create Advanced Item... = 2, Create Wrong Advanced Item... = 3, Create Delayed Item... = 4</summary>
+	public System.Object Exampletable_contextmenu_990 {get { return GetParameter(990); }set { SetParameter(990, value); }}
+	/// <summary>PID: 990  | Type: write | DISCREETS: Create Simple Item... = 1, Create Advanced Item... = 2, Create Wrong Advanced Item... = 3, Create Delayed Item... = 4</summary>
+	public System.Object Exampletable_contextmenu {get { return Write.Exampletable_contextmenu; }set { Write.Exampletable_contextmenu = value; }}
+	/// <summary>PID: 1001  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Devicedelay_11 {get { return GetParameter(11); }set { SetParameter(11, value); }}
-	/// <summary>PID: 101  | Type: read</summary>
+	public System.Object Mytableinstance_1001 {get { return GetParameter(1001); }set { SetParameter(1001, value); }}
+	/// <summary>PID: 1001  | Type: read</summary>
+	public System.Object Mytableinstance {get { return GetParameter(1001); }set { SetParameter(1001, value); }}
+	/// <summary>PID: 1002  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Datacreatelineup_101 {get { return GetParameter(101); }set { SetParameter(101, value); }}
-	/// <summary>PID: 101  | Type: read</summary>
-	public System.Object Datacreatelineup {get { return GetParameter(101); }set { SetParameter(101, value); }}
-	/// <summary>PID: 102  | Type: read</summary>
+	public System.Object Mytablemynumericcolumn_1002 {get { return GetParameter(1002); }set { SetParameter(1002, value); }}
+	/// <summary>PID: 1002  | Type: read</summary>
+	public System.Object Mytablemynumericcolumn {get { return GetParameter(1002); }set { SetParameter(1002, value); }}
+	/// <summary>PID: 1003  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Simulatedevicecommunication_102 {get { return GetParameter(102); }set { SetParameter(102, value); }}
-	/// <summary>PID: 102  | Type: read</summary>
-	public System.Object Simulatedevicecommunication {get { return GetParameter(102); }set { SetParameter(102, value); }}
-	/// <summary>PID: 103  | Type: read</summary>
+	public System.Object Mytablemystringcolumn_1003 {get { return GetParameter(1003); }set { SetParameter(1003, value); }}
+	/// <summary>PID: 1003  | Type: read</summary>
+	public System.Object Mytablemystringcolumn {get { return GetParameter(1003); }set { SetParameter(1003, value); }}
+	/// <summary>PID: 1004  | Type: read | DISCREETS: Discreet 1 = 0, Discreet 2 = 1, Discreet 3 = 2</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Currentactivemessage_103 {get { return GetParameter(103); }set { SetParameter(103, value); }}
-	/// <summary>PID: 103  | Type: read</summary>
-	public System.Object Currentactivemessage {get { return GetParameter(103); }set { SetParameter(103, value); }}
-	/// <summary>PID: 104  | Type: read</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Internaldevicecommunicationbuffer_104 {get { return GetParameter(104); }set { SetParameter(104, value); }}
-	/// <summary>PID: 104  | Type: read</summary>
-	public System.Object Internaldevicecommunicationbuffer {get { return GetParameter(104); }set { SetParameter(104, value); }}
-	/// <summary>PID: 105  | Type: dummy</summary>
-	public System.Object Triggernextinbuffer_dummy {get { return GetParameter(105); }set { SetParameter(105, value); }}
-	/// <summary>PID: 200  | Type: read</summary>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Automationscriptresponse_200 {get { return GetParameter(200); }set { SetParameter(200, value); }}
-	/// <summary>PID: 200  | Type: read</summary>
-	public System.Object Automationscriptresponse {get { return GetParameter(200); }set { SetParameter(200, value); }}
+	public System.Object Mytablemydiscreetcolumn_1004 {get { return GetParameter(1004); }set { SetParameter(1004, value); }}
+	/// <summary>PID: 1004  | Type: read | DISCREETS: Discreet 1 = 0, Discreet 2 = 1, Discreet 3 = 2</summary>
+	public System.Object Mytablemydiscreetcolumn {get { return GetParameter(1004); }set { SetParameter(1004, value); }}
 	/// <summary>PID: 9000000  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Interappreceiver_9000000 {get { return GetParameter(9000000); }set { SetParameter(9000000, value); }}
+	public System.Object Iac_receiver_9000000 {get { return GetParameter(9000000); }set { SetParameter(9000000, value); }}
 	/// <summary>PID: 9000000  | Type: read</summary>
-	public System.Object Interappreceiver {get { return GetParameter(9000000); }set { SetParameter(9000000, value); }}
-	/// <summary>PID: 9000001  | Type: read | DISCREETS: Disabled = 0, Enabled = 1</summary>
+	public System.Object Iac_receiver {get { return GetParameter(9000000); }set { SetParameter(9000000, value); }}
+	/// <summary>PID: 9000001  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Interappdebug_9000001 {get { return GetParameter(9000001); }set { SetParameter(9000001, value); }}
-	/// <summary>PID: 9000001  | Type: read | DISCREETS: Disabled = 0, Enabled = 1</summary>
-	public System.Object Interappdebug {get { return GetParameter(9000001); }set { SetParameter(9000001, value); }}
-	/// <summary>PID: 9000002  | Type: write | DISCREETS: Disabled = 0, Enabled = 1</summary>
+	public System.Object Iac_response_9000001 {get { return GetParameter(9000001); }set { SetParameter(9000001, value); }}
+	/// <summary>PID: 9000001  | Type: read</summary>
+	public System.Object Iac_response {get { return GetParameter(9000001); }set { SetParameter(9000001, value); }}
+	/// <summary>PID: 9000101  | Type: read</summary>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public System.Object Interappdebug_9000002 {get { return GetParameter(9000002); }set { SetParameter(9000002, value); }}
+	public System.Object Iac_messagesguid_9000101 {get { return GetParameter(9000101); }set { SetParameter(9000101, value); }}
+	/// <summary>PID: 9000101  | Type: read</summary>
+	public System.Object Iac_messagesguid {get { return GetParameter(9000101); }set { SetParameter(9000101, value); }}
+	/// <summary>PID: 9000102  | Type: read | DISCREETS: Buffered = 1, In Progress = 2, Confirmed = 3</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Iac_messagesstatus_9000102 {get { return GetParameter(9000102); }set { SetParameter(9000102, value); }}
+	/// <summary>PID: 9000102  | Type: read | DISCREETS: Buffered = 1, In Progress = 2, Confirmed = 3</summary>
+	public System.Object Iac_messagesstatus {get { return GetParameter(9000102); }set { SetParameter(9000102, value); }}
+	/// <summary>PID: 9000103  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Iac_messagesrequest_9000103 {get { return GetParameter(9000103); }set { SetParameter(9000103, value); }}
+	/// <summary>PID: 9000103  | Type: read</summary>
+	public System.Object Iac_messagesrequest {get { return GetParameter(9000103); }set { SetParameter(9000103, value); }}
+	/// <summary>PID: 9000104  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Iac_messagesrequesttype_9000104 {get { return GetParameter(9000104); }set { SetParameter(9000104, value); }}
+	/// <summary>PID: 9000104  | Type: read</summary>
+	public System.Object Iac_messagesrequesttype {get { return GetParameter(9000104); }set { SetParameter(9000104, value); }}
+	/// <summary>PID: 9000105  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Iac_messagesresponse_9000105 {get { return GetParameter(9000105); }set { SetParameter(9000105, value); }}
+	/// <summary>PID: 9000105  | Type: read</summary>
+	public System.Object Iac_messagesresponse {get { return GetParameter(9000105); }set { SetParameter(9000105, value); }}
+	/// <summary>PID: 9000106  | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Iac_messagesresponsetype_9000106 {get { return GetParameter(9000106); }set { SetParameter(9000106, value); }}
+	/// <summary>PID: 9000106  | Type: read</summary>
+	public System.Object Iac_messagesresponsetype {get { return GetParameter(9000106); }set { SetParameter(9000106, value); }}
 	public WriteParameters Write { get; set; }
 	public ConcreteSLProtocolExt()
 	{
+		mytable = new MytableQActionTable(this, 1000, "mytable");
+		iac_messages = new Iac_messagesQActionTable(this, 9000100, "iac_messages");
 		Write = new WriteParameters(this);
 	}
+}
+/// <summary>IDX: 0</summary>
+public class MytableQActionTable : QActionTable, IEnumerable<MytableQActionRow>
+{
+	public MytableQActionTable(SLProtocol protocol, int tableId, string tableName) : base(protocol, tableId, tableName) { }
+	IEnumerator IEnumerable.GetEnumerator() { return (IEnumerator) GetEnumerator(); }
+	public IEnumerator<MytableQActionRow> GetEnumerator() { return new QActionTableEnumerator<MytableQActionRow>(this); }
+}
+/// <summary>IDX: 0</summary>
+public class Iac_messagesQActionTable : QActionTable, IEnumerable<Iac_messagesQActionRow>
+{
+	public Iac_messagesQActionTable(SLProtocol protocol, int tableId, string tableName) : base(protocol, tableId, tableName) { }
+	IEnumerator IEnumerable.GetEnumerator() { return (IEnumerator) GetEnumerator(); }
+	public IEnumerator<Iac_messagesQActionRow> GetEnumerator() { return new QActionTableEnumerator<Iac_messagesQActionRow>(this); }
+}
+/// <summary>IDX: 0</summary>
+public class MytableQActionRow : QActionTableRow
+{
+	/// <summary>PID: 1001 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Mytableinstance_1001 { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
+	/// <summary>PID: 1001 | Type: read</summary>
+	public System.Object Mytableinstance { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
+	/// <summary>PID: 1002 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Mytablemynumericcolumn_1002 { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
+	/// <summary>PID: 1002 | Type: read</summary>
+	public System.Object Mytablemynumericcolumn { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
+	/// <summary>PID: 1003 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Mytablemystringcolumn_1003 { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
+	/// <summary>PID: 1003 | Type: read</summary>
+	public System.Object Mytablemystringcolumn { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
+	/// <summary>PID: 1004 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Mytablemydiscreetcolumn_1004 { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
+	/// <summary>PID: 1004 | Type: read</summary>
+	public System.Object Mytablemydiscreetcolumn { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
+	public MytableQActionRow() : base(0, 4) { }
+	public MytableQActionRow(System.Object[] oRow) : base(0, 4, oRow) { }
+	public static implicit operator MytableQActionRow(System.Object[] source) { return new MytableQActionRow(source); }
+	public static implicit operator System.Object[](MytableQActionRow source) { return source.ToObjectArray(); }
+}
+/// <summary>IDX: 0</summary>
+public class Iac_messagesQActionRow : QActionTableRow
+{
+	/// <summary>PID: 9000101 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Iac_messagesguid_9000101 { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
+	/// <summary>PID: 9000101 | Type: read</summary>
+	public System.Object Iac_messagesguid { get { if (base.Columns.ContainsKey(0)) { return base.Columns[0]; } else { return null; } } set { if (base.Columns.ContainsKey(0)) { base.Columns[0] = value; } else { base.Columns.Add(0, value); } } }
+	/// <summary>PID: 9000102 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Iac_messagesstatus_9000102 { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
+	/// <summary>PID: 9000102 | Type: read</summary>
+	public System.Object Iac_messagesstatus { get { if (base.Columns.ContainsKey(1)) { return base.Columns[1]; } else { return null; } } set { if (base.Columns.ContainsKey(1)) { base.Columns[1] = value; } else { base.Columns.Add(1, value); } } }
+	/// <summary>PID: 9000103 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Iac_messagesrequest_9000103 { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
+	/// <summary>PID: 9000103 | Type: read</summary>
+	public System.Object Iac_messagesrequest { get { if (base.Columns.ContainsKey(2)) { return base.Columns[2]; } else { return null; } } set { if (base.Columns.ContainsKey(2)) { base.Columns[2] = value; } else { base.Columns.Add(2, value); } } }
+	/// <summary>PID: 9000104 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Iac_messagesrequesttype_9000104 { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
+	/// <summary>PID: 9000104 | Type: read</summary>
+	public System.Object Iac_messagesrequesttype { get { if (base.Columns.ContainsKey(3)) { return base.Columns[3]; } else { return null; } } set { if (base.Columns.ContainsKey(3)) { base.Columns[3] = value; } else { base.Columns.Add(3, value); } } }
+	/// <summary>PID: 9000105 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Iac_messagesresponse_9000105 { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
+	/// <summary>PID: 9000105 | Type: read</summary>
+	public System.Object Iac_messagesresponse { get { if (base.Columns.ContainsKey(4)) { return base.Columns[4]; } else { return null; } } set { if (base.Columns.ContainsKey(4)) { base.Columns[4] = value; } else { base.Columns.Add(4, value); } } }
+	/// <summary>PID: 9000106 | Type: read</summary>
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public System.Object Iac_messagesresponsetype_9000106 { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	/// <summary>PID: 9000106 | Type: read</summary>
+	public System.Object Iac_messagesresponsetype { get { if (base.Columns.ContainsKey(5)) { return base.Columns[5]; } else { return null; } } set { if (base.Columns.ContainsKey(5)) { base.Columns[5] = value; } else { base.Columns.Add(5, value); } } }
+	public Iac_messagesQActionRow() : base(0, 6) { }
+	public Iac_messagesQActionRow(System.Object[] oRow) : base(0, 6, oRow) { }
+	public static implicit operator Iac_messagesQActionRow(System.Object[] source) { return new Iac_messagesQActionRow(source); }
+	public static implicit operator System.Object[](Iac_messagesQActionRow source) { return source.ToObjectArray(); }
 }
 }
