@@ -32,17 +32,14 @@ public class QAction
 
 			protocol.InterAppDebugLog("Run", "Extracted Call with Guid:" + receivedCall.Guid + " Sent Date:" + receivedCall.SendingTime);
 			protocol.InterAppDebugLog("Run", "Found " + receivedCall.Messages.Count + " Messages.");
-			foreach (var message in receivedCall.Messages)
+
+			foreach (var receivedMessage in receivedCall.Messages)
 			{
-				Message returnMessage;
-				message.TryExecute(protocol, protocol, Shared.Mapping, out returnMessage);
-				if (returnMessage != null)
+				Message response;
+				receivedMessage.TryExecute(protocol, protocol, Shared.Mapping, out response);
+				if (response != null)
 				{
-					returnMessage.Send(
-						protocol.SLNet.RawConnection,
-						message.ReturnAddress.AgentId,
-						message.ReturnAddress.ElementId,
-						message.ReturnAddress.ParameterId, Shared.KnownTypes);
+					receivedMessage.Reply(protocol.SLNet.RawConnection, response, Shared.KnownTypes);
 				}
 			}
 		}

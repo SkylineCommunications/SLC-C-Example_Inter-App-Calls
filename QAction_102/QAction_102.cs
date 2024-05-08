@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+
 using Skyline.Common.Api.Calls.SlcSdfInterApp;
 using Skyline.DataMiner.Core.InterAppCalls.Common.CallSingle;
 using Skyline.DataMiner.Core.InterAppCalls.Common.Shared;
@@ -43,17 +44,17 @@ public class QAction
 				}
 
 				// Did the external call want a returned message?
-				var returnDestination = currentMessage.ReturnAddress;
-				if (returnDestination != null)
+				if (currentMessage.ReturnAddress != null || currentMessage.BrokerReturnAddress != null)
 				{
 					protocol.Log("QA" + protocol.QActionID + "|Run|Return Message Needed", LogType.Error, LogLevel.NoLogging);
 					var returnMessage = new CreateLineup.ExpectedReturn();
 					returnMessage.Guid = currentMessage.Guid;
 					returnMessage.LineUpId = newLineUpId;
 					returnMessage.Source = new Source("SLC SDF Inter App", protocol.DataMinerID, protocol.ElementID);
-					protocol.Log("QA" + protocol.QActionID + "|Return|returnDestination.ElementId" + returnDestination.ElementId + "returnDestination.AgentId " + returnDestination.AgentId + ", currentMessage.ReturnAddress.ParameterId: " + currentMessage.ReturnAddress.ParameterId, LogType.Error, LogLevel.NoLogging);
-					protocol.Log("QA" + protocol.QActionID + "|Run|Sending Return Message :" + returnMessage.Guid, LogType.Error, LogLevel.NoLogging);
-					returnMessage.Send(protocol.SLNet.RawConnection, returnDestination.AgentId, returnDestination.ElementId, currentMessage.ReturnAddress.ParameterId, Shared.KnownTypes);
+
+					protocol.Log("QA" + protocol.QActionID + "|Run|Sending Return Message:" + returnMessage.Guid, LogType.Error, LogLevel.NoLogging);
+					currentMessage.Reply(protocol.SLNet.RawConnection, returnMessage, Shared.KnownTypes);
+					////returnMessage.Send(protocol.SLNet.RawConnection, returnDestination.AgentId, returnDestination.ElementId, currentMessage.ReturnAddress.ParameterId, Shared.KnownTypes);
 				}
 			}
 		}

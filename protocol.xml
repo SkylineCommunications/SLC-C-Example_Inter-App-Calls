@@ -59,7 +59,7 @@ Versioning after this handled with VersionHistory tag
 <Protocol xmlns="http://www.skyline.be/protocol">
 	<Name>Skyline Example InterAppCalls</Name>
 	<Description>SLC SDF Inter App Calls is an example showing how to communicate between automation script and element.</Description>
-	<Version>4.0.0.1</Version>
+	<Version>4.0.0.2</Version>
 	<IntegrationID>DMS-DRV-9029</IntegrationID>
 	<Provider>Skyline Communications</Provider>
 	<Vendor>Skyline Example</Vendor>
@@ -561,6 +561,16 @@ Versioning after this handled with VersionHistory tag
 										<References>
 											<TaskId>217628</TaskId>
 										</References>
+									</MinorVersion>
+									<MinorVersion id="2" basedOn="4.0.0.1">
+										<Date>2024-05-08</Date>
+										<Provider>
+											<Author>JST</Author>
+											<Company>Skyline Communications</Company>
+										</Provider>
+										<Changes>
+											<Change>Support for new interappcall library.</Change>
+										</Changes>
 									</MinorVersion>
 								</MinorVersions>
 							</MajorVersion>
