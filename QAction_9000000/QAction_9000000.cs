@@ -3,6 +3,7 @@ using System;
 using Skyline.Common.Api.Calls.SlcSdfInterApp;
 using Skyline.DataMiner.Core.InterAppCalls.Common.CallBulk;
 using Skyline.DataMiner.Core.InterAppCalls.Common.CallSingle;
+using Skyline.DataMiner.Core.InterAppCalls.Common.Serializing;
 using Skyline.DataMiner.Scripting;
 using Skyline.Protocol.Common.Logging;
 
