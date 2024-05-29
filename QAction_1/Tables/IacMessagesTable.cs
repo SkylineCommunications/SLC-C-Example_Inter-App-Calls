@@ -32,6 +32,7 @@ namespace Skyline.Protocol.Tables
 			RequestType = Type.GetType(Convert.ToString(row[3]));
 			Response = MessageFactory.CreateFromRaw(Convert.ToString(row[4]), Types.KnownTypes);
 			ResponseType = Type.GetType(Convert.ToString(row[5]));
+			Info = Convert.ToString(row[6]);
 		}
 
 		public Guid Guid { get; set; }
@@ -45,6 +46,8 @@ namespace Skyline.Protocol.Tables
 		public Message Response { get; set; }
 
 		public Type ResponseType { get; set; }
+
+		public string Info { get; set; }
 
 		public static IAC_MessagesTableRow FromPK(SLProtocol protocol, string pk)
 		{
@@ -63,10 +66,11 @@ namespace Skyline.Protocol.Tables
 			{
 				Iac_messagesguid_9000101 = Guid.ToString(),
 				Iac_messagesstatus_9000102 = (int)Status,
-				Iac_messagesrequest_9000103 = SerializerFactory.CreateInterAppSerializer(new List<Type> { RequestType }).SerializeToString(Request),
+				Iac_messagesrequest_9000103 = SerializerFactory.CreateInterAppSerializer(new List<Type>()).SerializeToString(Request),
 				Iac_messagesrequesttype_9000104 = RequestType.AssemblyQualifiedName,
-				Iac_messagesresponse_9000105 = SerializerFactory.CreateInterAppSerializer(new List<Type> { ResponseType }).SerializeToString(Response),
+				Iac_messagesresponse_9000105 = SerializerFactory.CreateInterAppSerializer(new List<Type>()).SerializeToString(Response),
 				Iac_messagesresponsetype_9000106 = ResponseType.AssemblyQualifiedName,
+				Iac_messagesinfo_9000107 = Info,
 			};
 		}
 
@@ -97,6 +101,7 @@ namespace Skyline.Protocol.Tables
 				Parameter.Iac_messages.Idx.iac_messagesrequesttype_9000104,
 				Parameter.Iac_messages.Idx.iac_messagesresponse_9000105,
 				Parameter.Iac_messages.Idx.iac_messagesresponsetype_9000106,
+				Parameter.Iac_messages.Idx.iac_messagesinfo_9000107
 			};
 			object[] iac_messages = (object[])protocol.NotifyProtocol((int)SLNetMessages.NotifyType.NT_GET_TABLE_COLUMNS, Parameter.Iac_messages.tablePid, iAC_MessagesIdx);
 			object[] gUIDIDX = (object[])iac_messages[0];
@@ -105,6 +110,7 @@ namespace Skyline.Protocol.Tables
 			object[] requestType = (object[])iac_messages[3];
 			object[] response = (object[])iac_messages[4];
 			object[] responseType = (object[])iac_messages[5];
+			object[] info = (object[])iac_messages[6];
 
 			for (int i = 0; i < gUIDIDX.Length; i++)
 			{
@@ -114,7 +120,8 @@ namespace Skyline.Protocol.Tables
 				request[i],
 				requestType[i],
 				response[i],
-				responseType[i]));
+				responseType[i],
+				info[i]));
 			}
 		}
 

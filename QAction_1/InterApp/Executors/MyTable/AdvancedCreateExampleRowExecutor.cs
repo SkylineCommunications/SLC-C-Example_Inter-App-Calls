@@ -5,16 +5,17 @@ namespace Skyline.Protocol.InterApp.Executors.MyTable
 	using System;
 	using Newtonsoft.Json;
 
+	using Skyline.DataMiner.ConnectorAPI.SkylineCommunications.ExampleInterAppCalls.InterAppMessages;
 	using Skyline.DataMiner.ConnectorAPI.SkylineCommunications.ExampleInterAppCalls.Messages.MyTable;
 	using Skyline.DataMiner.Core.InterAppCalls.Common.CallSingle;
 	using Skyline.DataMiner.Core.InterAppCalls.Common.MessageExecution;
 	using Skyline.DataMiner.Scripting;
 
-	public class AdvancedCreateExampleRowExecutor : MessageExecutor<AdvancedCreateExampleRow>
+	public class AdvancedCreateExampleRowExecutor : MessageExecutor<GenericInterAppMessage<AdvancedCreateExampleRow>>
 	{
 		private AdvancedCreateExampleRowResult result;
 
-		public AdvancedCreateExampleRowExecutor(AdvancedCreateExampleRow message) : base(message)
+		public AdvancedCreateExampleRowExecutor(GenericInterAppMessage<AdvancedCreateExampleRow> message) : base(message)
 		{
 		}
 
@@ -46,11 +47,11 @@ namespace Skyline.Protocol.InterApp.Executors.MyTable
 
 			// We are going to check if value1 is within the range we specified in the protocol.xml
 			// Value 1 is a percentage, which means it can't be lower than 0 and can't be higher then 100.
-			if (!Message.ExampleData.MyNumericColumn.HasValue ||
-				Message.ExampleData.MyNumericColumn.Value < 0 ||
-				Message.ExampleData.MyNumericColumn.Value > 100)
+			if (!Message.Data.ExampleData.MyNumericColumn.HasValue ||
+				Message.Data.ExampleData.MyNumericColumn.Value < 0 ||
+				Message.Data.ExampleData.MyNumericColumn.Value > 100)
 			{
-				result.Description = $"The request should contain a value between 0 and 100, for property {nameof(Message.ExampleData.MyNumericColumn)}. Instead got '{Message.ExampleData.MyNumericColumn}'.";
+				result.Description = $"The request should contain a value between 0 and 100, for property {nameof(Message.Data.ExampleData.MyNumericColumn)}. Instead got '{Message.Data.ExampleData.MyNumericColumn}'.";
 				return false;
 			}
 
@@ -74,7 +75,8 @@ namespace Skyline.Protocol.InterApp.Executors.MyTable
 			if (!protocol.Exists(Parameter.Mytable.tablePid, newId))
 			{
 				// Mimic for example setting a http body and triggering a group.
-				protocol.SetParameter(Parameter.Mytable.tablePid, JsonConvert.SerializeObject(Message.ExampleData));
+				Message.Data.ExampleData.Instance = newId;
+				protocol.SetParameter(Parameter.commandbody, JsonConvert.SerializeObject(Message.Data.ExampleData));
 				protocol.CheckTrigger(11);
 
 				result.Description = "Successfully send a create new MyTable row message to the simulated device.";
@@ -93,7 +95,12 @@ namespace Skyline.Protocol.InterApp.Executors.MyTable
 		public override Message CreateReturnMessage()
 		{
 			// Here you can build the return message. If you don't need it you can return null.
-			return result;
+			if(result != null)
+			{
+				return new GenericInterAppMessage<AdvancedCreateExampleRowResult>(result);
+			}
+
+			return null;
 		}
 	}
 }

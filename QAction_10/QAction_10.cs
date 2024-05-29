@@ -3,6 +3,7 @@ using System.Linq;
 
 using Newtonsoft.Json;
 
+using Skyline.DataMiner.ConnectorAPI.SkylineCommunications.ExampleInterAppCalls.InterAppMessages;
 using Skyline.DataMiner.ConnectorAPI.SkylineCommunications.ExampleInterAppCalls.Messages;
 using Skyline.DataMiner.ConnectorAPI.SkylineCommunications.ExampleInterAppCalls.Messages.MyTable;
 using Skyline.DataMiner.Scripting;
@@ -26,6 +27,11 @@ public static class QAction
 			// which in our case is just the same message we send out, but would normally be a response on a command.
 			// for example the response of a HTTP Post request.
 			var raw = Convert.ToString(protocol.GetParameter(Parameter.commandbody));
+			if(String.IsNullOrEmpty(raw))
+			{
+				return;
+			}
+
 			var response = JsonConvert.DeserializeObject<MyTableData>(raw);
 
 			// Add the row to the table, just like you normally would.
@@ -43,8 +49,8 @@ public static class QAction
 			// Get all the buffered InterApp Messages that are connected to the DelayedCreateExampleRow call, the other ones are for other tables.
 			var iapBuffer = new IAC_MessagesTable(protocol);
 			var iapBufferRow = iapBuffer.Rows
-				.Where(message => message.ResponseType == typeof(DelayedCreateExampleRowResult))
-				.FirstOrDefault(message => ((DelayedCreateExampleRowResult)message.Response)?.RowKey == row.Instance);
+				.Where(message => message.ResponseType == typeof(GenericInterAppMessage<DelayedCreateExampleRowResult>))
+				.FirstOrDefault(message => message.Info == row.Instance);
 
 			if (iapBufferRow == null)
 			{
@@ -53,9 +59,9 @@ public static class QAction
 			}
 
 			// Get the already partially build response, and complete it.
-			var iapResponse = (DelayedCreateExampleRowResult)iapBufferRow.Response;
-			iapResponse.Success = true;
-			iapResponse.Description = "Successfully created a new MyTable example row.";
+			var iapResponse = iapBufferRow.Response as GenericInterAppMessage<DelayedCreateExampleRowResult>;
+			iapResponse.Data.Success = true;
+			iapResponse.Data.Description = "Successfully created a new MyTable example row.";
 
 			// Reply to the InterApp Message, and mark this row completed.
 			iapBufferRow.Request.Reply(protocol.SLNet.RawConnection, iapResponse, Types.KnownTypes);

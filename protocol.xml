@@ -55,15 +55,20 @@ Any inquiries can be addressed to:
 	<DeviceOID>0</DeviceOID>
 	<ElementType>Example</ElementType>
 	<Type relativeTimers="true">virtual</Type>
-	<Display defaultPage="General" pageOrder="General;Inter-App Communication" wideColumnPages=""/>
+	<Display defaultPage="General" pageOrder="General;Send InterApp;Inter-App Communication" wideColumnPages=""/>
 	<SNMP includepages="true">auto</SNMP>
 
 	<Compliancies>
 		<CassandraReady>true</CassandraReady>
 		<MinimumRequiredVersion>10.1.0.0 - 9966</MinimumRequiredVersion>
 	</Compliancies>
-
+	
 	<Params>
+		<Param id="2">
+			<Name>AfterStartup</Name>
+			<Description>After startup</Description>
+			<Type>dummy</Type>
+		</Param>
 		<Param id="10">
 			<Name>MarkRowsAsConfirmed</Name>
 			<Description>Mark Rows as Confirmed</Description>
@@ -81,9 +86,354 @@ Any inquiries can be addressed to:
 			</Interprete>
 		</Param>
 		
+		<Param id="100">
+			<Name>SendInterApp</Name>
+			<Type>write</Type>
+			<Information>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Send InterApp</Page>
+						<Column>0</Column>
+						<Row>5</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type width="110">button</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Send...</Display>
+						<Value>1</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="101" trending="false">
+			<Name>Element</Name>
+			<Description>Element</Description>
+			<Type>read</Type>
+			<Information>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Send InterApp</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets dependencyId="101" />
+			</Measurement>
+		</Param>
+		<Param id="151" setter="true">
+			<Name>Element</Name>
+			<Description>Element</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Send InterApp</Page>
+						<Column>0</Column>
+						<Row>0</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets dependencyId="102" />
+			</Measurement>
+		</Param>
+		<Param id="102" trending="false">
+			<Name>Element_DiscreetList</Name>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+				<DefaultValue></DefaultValue>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="103" trending="false">
+			<Name>MessageType</Name>
+			<Description>Message Type</Description>
+			<Type>read</Type>
+			<Information>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Send InterApp</Page>
+						<Column>0</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets dependencyId="104" />
+			</Measurement>
+		</Param>
+		<Param id="153" setter="true">
+			<Name>MessageType</Name>
+			<Description>Message Type</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Send InterApp</Page>
+						<Column>0</Column>
+						<Row>1</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets dependencyId="104" />
+			</Measurement>
+		</Param>
+		<Param id="104" trending="false">
+			<Name>MessageType_DiscreetList</Name>
+			<Type>read</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+				<DefaultValue></DefaultValue>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="105" trending="true">
+			<Name>MyNumericValue</Name>
+			<Description>My Numeric Value</Description>
+			<Type>read</Type>
+			<Information>
+			</Information>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Units>%</Units>
+				<Range>
+					<Low>0</Low>
+					<High>100</High>
+				</Range>
+				<Positions>
+					<Position>
+						<Page>Send InterApp</Page>
+						<Column>0</Column>
+						<Row>2</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="155" setter="true">
+			<Name>MyNumericValue</Name>
+			<Description>My Numeric Value</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>numeric text</RawType>
+				<Type>double</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Units>%</Units>
+				<Range>
+					<Low>0</Low>
+					<High>100</High>
+				</Range>
+				<Positions>
+					<Position>
+						<Page>Send InterApp</Page>
+						<Column>0</Column>
+						<Row>2</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>number</Type>
+			</Measurement>
+		</Param>
+		<Param id="106" trending="false">
+			<Name>MyStringValue</Name>
+			<Description>My String Value</Description>
+			<Type>read</Type>
+			<Information>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Send InterApp</Page>
+						<Column>0</Column>
+						<Row>3</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="156" setter="true">
+			<Name>MyStringValue</Name>
+			<Description>My String Value</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Send InterApp</Page>
+						<Column>0</Column>
+						<Row>3</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
+		<Param id="107" trending="false">
+			<Name>MyDiscreetValue</Name>
+			<Description>My Discreet Value</Description>
+			<Type>read</Type>
+			<Information>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Send InterApp</Page>
+						<Column>0</Column>
+						<Row>4</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Discreet 1</Display>
+						<Value>0</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Discreet 2</Display>
+						<Value>1</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Discreet 3</Display>
+						<Value>2</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		<Param id="157" setter="true">
+			<Name>MyDiscreetValue</Name>
+			<Description>My Discreet Value</Description>
+			<Type>write</Type>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+				<Positions>
+					<Position>
+						<Page>Send InterApp</Page>
+						<Column>0</Column>
+						<Row>4</Row>
+					</Position>
+				</Positions>
+			</Display>
+			<Measurement>
+				<Type>discreet</Type>
+				<Discreets>
+					<Discreet>
+						<Display>Discreet 1</Display>
+						<Value>0</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Discreet 2</Display>
+						<Value>1</Value>
+					</Discreet>
+					<Discreet>
+						<Display>Discreet 3</Display>
+						<Value>2</Value>
+					</Discreet>
+				</Discreets>
+			</Measurement>
+		</Param>
+		
 		<Param id="990">
-			<Name>ExampleTable_ContextMenu</Name>
-			<Description>Context Menu for Example Table</Description>
+			<Name>MyTable_ContextMenu</Name>
+			<Description>Context Menu for My Table</Description>
 			<Type>write</Type>
 			<Interprete>
 				<RawType>numeric text</RawType>
@@ -304,6 +654,7 @@ Any inquiries can be addressed to:
 				<ColumnOption idx="3" pid="9000104" type="retrieved" options="" />
 				<ColumnOption idx="4" pid="9000105" type="retrieved" options="" />
 				<ColumnOption idx="5" pid="9000106" type="retrieved" options="" />
+				<ColumnOption idx="6" pid="9000107" type="retrieved" options="" />
 			</ArrayOptions>
 			<Information>
 				<Subtext>This table contains the list of received InterApp calls which are currently being processed.</Subtext>
@@ -455,17 +806,46 @@ Any inquiries can be addressed to:
 				<Type>string</Type>
 			</Measurement>
 		</Param>
+		<Param id="9000107" trending="false">
+			<Name>IAC_MessagesInfo</Name>
+			<Description>Info (IAC_Messages)</Description>
+			<Type>read</Type>
+			<Information>
+				<Subtext>Extra info used to match incoming responses with the InterApp message.</Subtext>
+			</Information>
+			<Interprete>
+				<RawType>other</RawType>
+				<Type>string</Type>
+				<LengthType>next param</LengthType>
+			</Interprete>
+			<Display>
+				<RTDisplay>true</RTDisplay>
+			</Display>
+			<Measurement>
+				<Type>string</Type>
+			</Measurement>
+		</Param>
 	</Params>
-
+	
 	<QActions>
 		<QAction id="1" name="Precompiled Code" encoding="csharp" options="precompile" />
 		<QAction id="10" name="Mark rows as confirmed" encoding="csharp" triggers="10" />
-		<QAction id="990" name="Example Table - ContextMenu" encoding="csharp" triggers="990" />
-
+		<QAction id="100" name="Send InterApp Message" encoding="csharp" triggers="100" />
+		<QAction id="990" name="My Table - ContextMenu" encoding="csharp" triggers="990" />
+		
 		<QAction id="9000000" name="Process Incoming InterApp Messages" encoding="csharp" triggers="9000000"/>
+		<QAction id="2" name="After Startup QAction" encoding="csharp" triggers="2" />
 	</QActions>
-
+	
 	<Groups>
+		<Group id="1">
+			<Name>After Startup</Name>
+			<Description>After Startup</Description>
+			<Type>poll action</Type>
+			<Content>
+				<Action>2</Action>
+			</Content>
+		</Group>
 		<Group id="10">
 			<Name>Mark Rows as Confirmed</Name>
 			<Description>Mark Rows as Confirmed</Description>
@@ -483,8 +863,17 @@ Any inquiries can be addressed to:
 			</Content>
 		</Group>
 	</Groups>
-
+	
 	<Triggers>
+		<Trigger id="1">
+			<Name>After Startup</Name>
+			<On>protocol</On>
+			<Time>after startup</Time>
+			<Type>action</Type>
+			<Content>
+				<Id>1</Id>
+			</Content>
+		</Trigger>
 		<Trigger id="11">
 			<Name>Start Send Command</Name>
 			<Type>action</Type>
@@ -493,8 +882,18 @@ Any inquiries can be addressed to:
 			</Content>
 		</Trigger>
 	</Triggers>
-
+	
 	<Actions>
+		<Action id="1">
+			<Name>After Startup Group</Name>
+			<Type>execute next</Type>
+			<On id="1">group</On>
+		</Action>
+		<Action id="2">
+			<Name>After Startup QAction</Name>
+			<Type>run actions</Type>
+			<On id="2">parameter</On>
+		</Action>
 		<Action id="10">
 			<Name>Mark Rows as Confirmed</Name>
 			<On id="10">parameter</On>
@@ -506,7 +905,7 @@ Any inquiries can be addressed to:
 			<Type>execute next</Type>
 		</Action>
 	</Actions>
-
+	
 	<Timers>
 	</Timers>
 

@@ -5,7 +5,7 @@ using QAction_990;
 using Skyline.DataMiner.Scripting;
 
 /// <summary>
-/// DataMiner QAction Class: Example Table - ContextMenu.
+/// DataMiner QAction Class: My Table - ContextMenu.
 /// </summary>
 public static class QAction
 {
@@ -18,7 +18,7 @@ public static class QAction
 	{
 		try
 		{
-			ContextMenuTableManagerExampleTable contextMenu = new ContextMenuTableManagerExampleTable(
+			ContextMenuTableManagerMyTable contextMenu = new ContextMenuTableManagerMyTable(
 				protocol,
 				contextMenuData,
 				Parameter.Mytable.tablePid);

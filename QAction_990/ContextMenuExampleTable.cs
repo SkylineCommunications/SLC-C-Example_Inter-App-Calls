@@ -4,12 +4,13 @@ namespace QAction_990
 {
 	using System;
 
+	using Skyline.DataMiner.ConnectorAPI.SkylineCommunications.ExampleInterAppCalls.InterAppMessages;
 	using Skyline.DataMiner.ConnectorAPI.SkylineCommunications.ExampleInterAppCalls.Messages.MyTable;
 	using Skyline.DataMiner.Scripting;
 	using Skyline.DataMiner.Utils.Table.ContextMenu;
 	using Skyline.Protocol.InterApp;
 
-	public enum ExampleTableAction
+	public enum MyTableAction
 	{
 		SimpleAdd = 1,
 		AdvancedAdd = 2,
@@ -17,9 +18,9 @@ namespace QAction_990
 		DelayedAdd = 4,
 	}
 
-	internal class ContextMenuTableManagerExampleTable : ContextMenu<ExampleTableAction>
+	internal class ContextMenuTableManagerMyTable : ContextMenu<MyTableAction>
 	{
-		public ContextMenuTableManagerExampleTable(SLProtocol protocol, object contextMenuData, int tablePid)
+		public ContextMenuTableManagerMyTable(SLProtocol protocol, object contextMenuData, int tablePid)
 			: base(protocol, contextMenuData, tablePid)
 		{
 		}
@@ -28,24 +29,24 @@ namespace QAction_990
 		{
 			switch (this.Action)
 			{
-				case ExampleTableAction.SimpleAdd:
+				case MyTableAction.SimpleAdd:
 					SimpleCreate();
 					break;
 
-				case ExampleTableAction.AdvancedAdd:
+				case MyTableAction.AdvancedAdd:
 					AdvancedCreate();
 					break;
 
-				case ExampleTableAction.AdvancedAddWrong:
+				case MyTableAction.AdvancedAddWrong:
 					AdvancedCreateWrong();
 					break;
 
-				case ExampleTableAction.DelayedAdd:
+				case MyTableAction.DelayedAdd:
 					DelayedCreate();
 					break;
 
 				default:
-					Protocol.Log($"QA{Protocol.QActionID}|ContextMenuTableManagerExampleTable|ProcessContextMenuAction|Unknown action.", LogType.Error, LogLevel.NoLogging);
+					Protocol.Log($"QA{Protocol.QActionID}|ContextMenuTableManagerMyTable|ProcessContextMenuAction|Unknown action.", LogType.Error, LogLevel.NoLogging);
 					return;
 			}
 		}
@@ -58,23 +59,24 @@ namespace QAction_990
 			var value3 = (DiscreetColumnOption)Convert.ToInt32(Data[2]);
 
 			// Create the InterApp Message
-			var message = new SimpleCreateExampleRow
-			{
-				ExampleData = new MyTableData
+			var message = new GenericInterAppMessage<SimpleCreateExampleRow>(
+				new SimpleCreateExampleRow
 				{
-					MyNumericColumn = value1,
-					MyStringColumn = value2,
-					MyDiscreetColumn = value3,
-				},
-			};
+					ExampleData = new MyTableData
+					{
+						MyNumericColumn = value1,
+						MyStringColumn = value2,
+						MyDiscreetColumn = value3,
+					},
+				});
 
 			// Since the InterApp message is for the current element can't use the InterAppFactory to build our message.
 			// We can execute it immediately, without going through SLNet
 			message.TryExecute(Protocol, Protocol, Mapping.MessageToExecutorMapping, out var response);
 
 			// Log the result
-			var result = (SimpleCreateExampleRowResult)response;
-			Protocol.ShowInformationMessage(result?.Description);
+			var result = response as GenericInterAppMessage<SimpleCreateExampleRowResult>;
+			Protocol.ShowInformationMessage(result?.Data.Description);
 		}
 
 		protected void AdvancedCreate()
@@ -85,23 +87,24 @@ namespace QAction_990
 			var value3 = (DiscreetColumnOption)Convert.ToInt32(Data[2]);
 
 			// Create the InterApp Message
-			var message = new AdvancedCreateExampleRow
-			{
-				ExampleData = new MyTableData
+			var message = new GenericInterAppMessage<AdvancedCreateExampleRow>(
+				new AdvancedCreateExampleRow
 				{
-					MyNumericColumn = value1,
-					MyStringColumn = value2,
-					MyDiscreetColumn = value3,
-				},
-			};
+					ExampleData = new MyTableData
+					{
+						MyNumericColumn = value1,
+						MyStringColumn = value2,
+						MyDiscreetColumn = value3,
+					},
+				});
 
 			// Since the InterApp message is for the current element can't use the InterAppFactory to build our message.
 			// We can execute it immediately, without going through SLNet
 			message.TryExecute(Protocol, Protocol, Mapping.MessageToExecutorMapping, out var response);
 
 			// Log the result
-			var result = (AdvancedCreateExampleRowResult)response;
-			Protocol.ShowInformationMessage(result?.Description);
+			var result = response as GenericInterAppMessage<AdvancedCreateExampleRowResult>;
+			Protocol.ShowInformationMessage(result?.Data.Description);
 		}
 
 		protected void AdvancedCreateWrong()
@@ -112,23 +115,24 @@ namespace QAction_990
 			var value3 = (DiscreetColumnOption)Convert.ToInt32(Data[1]);
 
 			// Create the InterApp Message
-			var message = new AdvancedCreateExampleRow
-			{
-				ExampleData = new MyTableData
+			var message = new GenericInterAppMessage<AdvancedCreateExampleRow>(
+				new AdvancedCreateExampleRow
 				{
-					MyNumericColumn = value1,
-					MyStringColumn = value2,
-					MyDiscreetColumn = value3,
-				},
-			};
+					ExampleData = new MyTableData
+					{
+						MyNumericColumn = value1,
+						MyStringColumn = value2,
+						MyDiscreetColumn = value3,
+					},
+				});
 
 			// Since the InterApp message is for the current element can't use the InterAppFactory to build our message.
 			// We can execute it immediately, without going through SLNet
 			message.TryExecute(Protocol, Protocol, Mapping.MessageToExecutorMapping, out var response);
 
 			// Log the result
-			var result = (AdvancedCreateExampleRowResult)response;
-			Protocol.ShowInformationMessage(result?.Description);
+			var result = response as GenericInterAppMessage<AdvancedCreateExampleRowResult>;
+			Protocol.ShowInformationMessage(result?.Data.Description);
 		}
 
 		protected void DelayedCreate()
@@ -139,15 +143,16 @@ namespace QAction_990
 			var value3 = (DiscreetColumnOption)Convert.ToInt32(Data[2]);
 
 			// Create the InterApp Message
-			var message = new DelayedCreateExampleRow
-			{
-				ExampleData = new MyTableData
+			var message = new GenericInterAppMessage<DelayedCreateExampleRow>(
+				new DelayedCreateExampleRow
 				{
-					MyNumericColumn = value1,
-					MyStringColumn = value2,
-					MyDiscreetColumn = value3,
-				},
-			};
+					ExampleData = new MyTableData
+					{
+						MyNumericColumn = value1,
+						MyStringColumn = value2,
+						MyDiscreetColumn = value3,
+					},
+				});
 
 			// Since the InterApp message is for the current element can't use the InterAppFactory to build our message.
 			// We can execute it immediately, without going through SLNet

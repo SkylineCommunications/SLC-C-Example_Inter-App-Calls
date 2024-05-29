@@ -6,14 +6,15 @@ namespace Skyline.Protocol.InterApp.Executors.MyTable
 
 	using Newtonsoft.Json;
 
+	using Skyline.DataMiner.ConnectorAPI.SkylineCommunications.ExampleInterAppCalls.InterAppMessages;
 	using Skyline.DataMiner.ConnectorAPI.SkylineCommunications.ExampleInterAppCalls.Messages.MyTable;
 	using Skyline.DataMiner.Core.InterAppCalls.Common.CallSingle;
 	using Skyline.DataMiner.Core.InterAppCalls.Common.MessageExecution;
 	using Skyline.DataMiner.Scripting;
 
-	public class SimpleCreateExampleRowExecutor : SimpleMessageExecutor<SimpleCreateExampleRow>
+	public class SimpleCreateExampleRowExecutor : SimpleMessageExecutor<GenericInterAppMessage<SimpleCreateExampleRow>>
 	{
-		public SimpleCreateExampleRowExecutor(SimpleCreateExampleRow message) : base(message)
+		public SimpleCreateExampleRowExecutor(GenericInterAppMessage<SimpleCreateExampleRow> message) : base(message)
 		{
 		}
 
@@ -23,14 +24,15 @@ namespace Skyline.Protocol.InterApp.Executors.MyTable
 
 			var returnMessage = new SimpleCreateExampleRowResult
 			{
-				Request = Message,
+				Request = Message.Data,
 			};
 
 			var newId = Guid.NewGuid().ToString();
 			if (!protocol.Exists(Parameter.Mytable.tablePid, newId))
 			{
 				// Mimic for example setting a http body and triggering a group.
-				protocol.SetParameter(Parameter.Mytable.tablePid, JsonConvert.SerializeObject(Message.ExampleData));
+				Message.Data.ExampleData.Instance = newId;
+				protocol.SetParameter(Parameter.commandbody, JsonConvert.SerializeObject(Message.Data.ExampleData));
 				protocol.CheckTrigger(11);
 
 				returnMessage.Description = "Successfully send a create new MyTable row message to the simulated device.";
@@ -44,7 +46,7 @@ namespace Skyline.Protocol.InterApp.Executors.MyTable
 				returnMessage.Success = false;
 			}
 
-			optionalReturnMessage = returnMessage;
+			optionalReturnMessage = new GenericInterAppMessage<SimpleCreateExampleRowResult>(returnMessage);
 			return true;
 		}
 	}
